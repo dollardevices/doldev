@@ -686,7 +686,7 @@ render(){
                                         <h4 class="panel-title payment_item radio-lab">
 												<label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
 													<input type='radio' id='pay2' name='payoption' value='flutterwave' required onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
-													<span class="radio-lab"> BITCOIN USING  WALLET </span> 
+													<span class="radio-lab"> Do you want to used the shipping address as billing address   </span> 
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
 													<div class="check"></div>
 												</label>
@@ -915,17 +915,7 @@ render(){
                                                     </div>
                                                     </div>
                                                     
-                                                    {/* <div class="text-center">
-                                                {
-                                                    this.state. submitIftrue ?
-                                                    <div class="spinner"></div>
-                                                    
-                                                    :
-                                                    <button  class="btn btn-primary my-4">Enter </button>
-                                                }
-                                                    
-                                                    
-                                            </div> */}
+                                                  
                                                 
 
                                                 <div class="creat_account">
@@ -940,7 +930,7 @@ render(){
                                             </div>
                                             {
                                             this.state. submitIftrue ?
-                                            // <div class="spinner"></div>
+                                            
                                             <div></div>
                                             
                                             :
