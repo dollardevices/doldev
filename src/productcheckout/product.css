@@ -1,0 +1,312 @@
+.checkout-payment-body{
+ width: 95%;
+ margin: auto
+ /* background: red */
+}
+
+.card-body-payment-sub{
+  width: 98%;
+  margin: auto;
+  margin-top: 10px;
+
+}
+.div-card-chectout{
+  position: relative;
+  right: 13px;
+}
+.checkout-payment-head{
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+  font-family: 'Open Sans Light', sans-serif;
+  /* padding: 1% */
+  padding: 0.1px;
+  padding-left: 20px
+}
+.checkout-payment-sub{
+  width: 50%;
+  margin: auto
+}
+.checkout-payment-sub-input{
+  /* border: forestgreen solid 1px; */
+  width: 99%;
+  margin: auto;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.16),0 1px 5px 0 rgba(0,0,0,0.12);
+  font-family: 'Open Sans Light', sans-serif;
+  padding: 5%;
+}
+.checkout-payment-sub-btc{
+  width: 70%;
+  margin: auto;
+  /* background: red; */
+}
+.float-left a{
+  color: #fff !important
+}
+.header_social-costom li a{
+  color: #fff !important
+}
+.banner_edit {
+  position: relative;
+  z-index: 1;
+  height: 200px !important;
+  /* min-height: 900px; */
+  /* background: red !important; */
+}
+
+.radion_btn input[type=checkbox] {
+  transform: scale(1.5);
+}
+
+.radion_btn input[type=checkbox] {
+  width: 30px;
+  height: 30px;
+  margin-right: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  visibility: hidden;
+
+}
+
+.checkout-costom{
+  position: relative;
+  left: 20px;
+  bottom: 10px;
+  color: black
+}
+.radion_btn input[type=checkbox]:after {
+  content: " ";
+  background-color: #fff;
+  display: inline-block;
+  margin-left: 10px;
+  padding-bottom: 25px;
+  color: #00BFF0;
+  width: 20px;
+  height: 16px;
+  visibility: visible;
+  border: 1px solid #00BFF0;
+  padding-left: 3px;
+  border-radius: 5px;
+  position: relative;
+  bottom: 18px;
+  right: 18px;
+}
+
+.radion_btn input[type=checkbox]:checked:after {
+  content: "\2714";
+  padding: -1px;
+  font-weight: bold;
+  position: relative;
+  bottom: 18px;
+  right: 18px;
+}
+.QRCode-active-body{
+  width: 100%;
+  padding-left: 30px;
+  margin: auto;
+}
+.copycheckout-code{
+  /* width: 320px; */
+  padding-top: 5px;
+  padding-bottom: 40px;
+  padding-left: 4px;
+  text-align: center
+};
+.copycheckout-code-sub{
+   /* color: #00BFF0 !important */
+}
+.checkout-CopyTo{
+  width: 40%;
+  margin: auto;
+  margin-top: 5%;
+  text-align: center;
+  position: relative;
+  right: 20px;
+  
+}
+.checkout-CopyTo a{
+  position: relative;
+  left: 20px
+}
+
+nav > .nav.nav-tabs{
+
+  border: none;
+    color:black;
+    /* background:#272e38; */
+    border-radius:0;
+
+}
+nav > div a.nav-item.nav-link,
+nav > div a.nav-item.nav-link.active
+{
+  border: none;
+    padding: 18px 25px;
+    color:black;
+    /* background:#272e38; */
+    border-radius:0;
+}
+
+.submit_btn-costom{
+  color: #fff !important
+}
+.submit_btn-costom:hover{
+  color: #000 !important
+}
+nav > div a.nav-item.nav-link.active:after
+ {
+  content: "";
+  position: relative;
+  bottom: -60px;
+  left: -10%;
+  border: 15px solid transparent;
+  border-top-color: #380087;;
+}
+.tab-content{
+  background: #fdfdfd;
+    line-height: 25px;
+    border: 1px solid #ddd;
+    border-top:5px solid #380087;;
+    /* border-bottom:5px solid #e74c3c; */
+    padding:30px 25px;
+}
+nav > div a.nav-item.nav-link:hover{
+  /* background:  #380087; */
+  color:black;
+  border-radius:0;
+}
+/* nav > div a.nav-item.nav-link:hover, */
+nav > div a.nav-item.nav-link:focus
+{
+  border: none;
+    background: #380087;;
+    color:#fff;
+    border-radius:0;
+    /* transition:background 0.20s linear; */
+}
+
+.radio {
+  margin: 16px 0;
+  display: block;
+  cursor: pointer;
+}
+.radio input {
+  display: none;
+}
+.radio input + span {
+  line-height: 22px;
+  height: 22px;
+  padding-left: 22px;
+  display: block;
+  position: relative;
+}
+.radio input + span:not(:empty) {
+  padding-left: 30px;
+}
+.radio input + span:before, .radio input + span:after {
+  content: '';
+  width: 22px;
+  height: 22px;
+  display: block;
+  border-radius: 50%;
+  left: 0;
+  top: 0;
+  position: absolute;
+}
+.radio input + span:before {
+  background: #D1D7E3;
+  transition: background 0.2s ease, -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+  transition: background 0.2s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2), -webkit-transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 2);
+}
+.radio input + span:after {
+  background: #fff;
+  -webkit-transform: scale(0.78);
+          transform: scale(0.78);
+  transition: -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4), -webkit-transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.4);
+}
+.radio input:checked + span:before {
+  -webkit-transform: scale(1.04);
+          transform: scale(1.04);
+  background: #5D9BFB;
+}
+.radio input:checked + span:after {
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+  transition: -webkit-transform .3s ease;
+  transition: transform .3s ease;
+  transition: transform .3s ease, -webkit-transform .3s ease;
+}
+.radio:hover input + span:before {
+  -webkit-transform: scale(0.92);
+          transform: scale(0.92);
+}
+.radio:hover input + span:after {
+  -webkit-transform: scale(0.74);
+          transform: scale(0.74);
+}
+.radio:hover input:checked + span:after {
+  -webkit-transform: scale(0.4);
+          transform: scale(0.4);
+}
+
+/* body {
+  min-height: 100vh;
+  font-family: Roboto, Arial;
+  color: #ADAFB6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .twitter {
+  position: fixed;
+  display: block;
+  right: 24px;
+  bottom: 24px;
+  opacity: .5;
+  color: #212533;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all .4s ease;
+}
+body .twitter:hover {
+  opacity: 1;
+}
+body .twitter img {
+  display: block;
+  height: 36px;
+} */
+
+/* Loader container */
+.pre-loader {
+  background: rgba(32, 32, 32, 0.1);
+  z-index: 2000;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+
+/* Loader Settings */
+.loader {
+  border: 10px solid;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border-color: rgba(134, 65, 230, 0.8) transparent;
+  animation: spin 2s linear infinite;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 2;
+}
+
+@keyframes spin{
+  100%{
+      transform: rotate(360deg);
+  }
+}

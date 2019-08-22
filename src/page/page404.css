@@ -1,0 +1,14 @@
+.Page404{
+    width: 50%;
+    margin: auto
+}
+.paga404body{
+    width: 50%;
+    margin: auto;
+    text-align: center ;
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+.para-page-error{
+    font-size: 140%;
+}

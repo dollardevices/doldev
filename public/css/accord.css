@@ -1,0 +1,33 @@
+.paylogo {
+    width: 1.3em;
+    height: 100%;
+    margin-right: 30px;
+    
+}
+
+.panel-heading {
+    border: 1px solid rgb(231, 231, 231);
+}
+
+.panel-title {
+    margin: auto;
+    padding: 10px 20px 5px 20px;
+}
+
+.radio-space {
+    padding-left: 1.2rem;
+}
+
+.body-el {
+    border: 0.2px solid rgb(231, 231, 231);
+}
+
+.body-con {
+    margin: 40px;
+    font-size: 1em;
+}
+
+.body-p {
+    font-weight: 600;
+    color: #380087;
+}

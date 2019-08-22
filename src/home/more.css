@@ -1,0 +1,53 @@
+.home-more-body{
+    margin-bottom: 60px !important
+}
+.image-style{
+    width: 100%;
+    height: 340px;
+}
+.image-style img {
+    max-width: 100%;
+    max-height: 90%;
+    display: block;
+    margin: 0 auto;
+}
+.icon-posion-relative{
+    position: relative;
+    bottom: 200px !important
+}
+
+.f_p_img-home-page{
+    width: 85%;
+    height: 340px;
+}
+
+.f_p_img-home-page img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+.image-system-home{
+    width: 100%;
+    height: 140px !important;
+}
+.image-system-home img {
+    max-width: 100%;
+    max-height: 80%;
+    display: block;
+    margin: 0 auto;
+}
+.image-lastes-home{
+    width: 95%;
+    height: 150px !important;
+}
+
+.image-lastes-home img {
+    max-width: 100%;
+    max-height: 80%;
+    display: block;
+    margin: 0 auto;
+}
+
+

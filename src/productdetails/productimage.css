@@ -1,0 +1,210 @@
+.CartAdd-product-costom{
+    color: #fff !important
+}
+.CartAdd-product-costom:hover{
+    color: black !important
+}
+.data-productimage{
+    width: 100%;
+    height: 400px !important;
+    margin: auto;
+    /* background: red; */
+    margin-top: 60px
+}
+
+.data-productimage img {
+  
+    max-width: 100%;
+    max-height: 110%;
+    margin: auto
+    /* position: fixed;
+    display: block;
+    margin: 0 auto; */
+}
+.data-productimage-small{
+    width: 30%;
+    height: 50px;
+}
+.data-productimage-small img {
+    max-width: 93%;
+    max-height: 94%;
+    display: block;
+    margin: 0 auto;
+}
+
+.box {
+    width: 40%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+  }
+  
+  .button {
+    font-size: 1em;
+    padding: 10px;
+    color: #fff;
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+  }
+  .button:hover {
+    background: #06D85F;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 30%;
+    position: relative;
+    transition: all 5s ease-in-out;
+  }
+  
+  .popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: #06D85F;
+  }
+  .popup .content {
+    max-height: 30%;
+    overflow: auto;
+  }
+  .puduct-commet-font{
+    font-size: 250%;
+    color: rgba(0, 209, 100, 0.7);
+  }
+  @media screen and (max-width: 700px){
+    .box{
+      width: 70%;
+    }
+    .popup{
+      width: 70%;
+    }
+  }
+  .productcart-cartshow{
+    width: 60%;
+    height: auto;
+    padding-bottom:auto;
+    /* background: #e8f0f2;; */
+    border: solid  #e8f0f2 4px;
+    margin: auto;
+    margin-bottom:50px
+  }
+
+  .productcart-cartshow-head{
+    /* background: #000; */
+    height: 50px;
+    border-bottom: #dddddd 1px solid;
+    margin-bottom: 40px;
+    /* border-top: #dddddd 1px solid */
+  }
+  .productcart-cartshow-right_page{
+    color: #fff;;
+    margin-right: 10px;
+    font-size: 160%;
+  }
+  .productcart-cartshow-left_dorp{
+    font-size: 110%;
+    font-weight: bold
+  }
+  .productcart-cartshow-left_dorp i{
+    color: #380087;;
+    margin-right: 10px;
+    font-size: 160%;
+  }
+
+  .min-add-button {
+    width: 120px;
+    margin: 20px auto;
+    margin-top: 15px;
+    position: relative;
+    bottom: 20px
+    /* background: red */
+    /* top: 30px */
+  }
+  .productcart-cartshow-row h5{
+   position: relative;
+   left: 30px;
+   top: 30px
+  }
+  
+  .min-add-button a {
+    background: #380087;
+    height: 35px;
+    color: #fff;
+    border: 0px;
+    padding: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .min-add-button a:hover {
+    background: #000;
+  }
+  .min-add-button input {
+    height: 15px !important;
+    text-align: center;
+    font-weight: 500;
+    width: 10% !important;
+    padding: 16px;
+    /* color: #ed8203; */
+  }
+  
+  .productcart-cartshow-body{
+     /* background: red; */
+     width: 60%;
+     margin: auto;
+     /* height: 200px; */
+    margin-top: 20px;
+    margin-bottom: 100px
+  }
+
+  .productcart-cartshow-body p{
+    font-size: 130%;
+    margin-top: 5px
+  }
+  .productcart-cartshow-body h2{
+    color:#380087;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px !important
+  }

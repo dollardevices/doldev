@@ -1,0 +1,739 @@
+import React, { Component } from 'react';
+import "./proof.css"
+import { BrowserRouter as Router, Route, Link , Redirect} from "react-router-dom";
+// import  AuthService  from "../api/authentication.js";
+import { getCartProducts  } from '../api/repository';
+// const Auth = new AuthService();
+import CopyToClipboard from "@vigosan/react-copy-to-clipboard";
+import { QRCode } from "react-qr-svg";
+
+
+import axios from 'axios';
+const BASE_URL = 'http://localhost:4000/api';
+let images = [];
+class Proof extends Component {
+
+  constructor(props){
+    super(props)
+    this.state = {
+        noerorrpage:true,
+        showAdd:false,
+        count : 0,
+        disabled : false,
+        photos : [],
+        images: [],
+        imageUrls : [],
+        message: '',
+        ifImage :false,
+        checked: false ,
+        wallet :"1DXJDSMUTkuHFn2rADps45ExRUUn2fvVWh",
+        checkedbtc : false,
+        checkedtrans : false,
+        domain: "https://dollardeviceback.herokuapp.com/api", 
+        loanData : false,
+        products :[],
+        getId : "",
+        inBTC :0,
+        rate :0,
+        total:0,
+       }
+      //  5d3cf6edc0024c0004a10b7c
+    
+    }
+
+
+    
+        
+componentDidMount(){
+  this.props.noerorrpage(this.state.noerorrpage)
+  const { match: { params } } = this.props;
+  
+
+  // this.props.checklook()
+  // console.log("params.userId",params.id, "params all", params)
+         
+  const requestOptions = {
+      method: 'GET', 
+      headers: { 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'  },
+  };
+  this.setState({
+   loading:true,
+   getId:params.id
+  })
+  // console.log("public users param", params.id, this.props.location.state, this.props.location.state.message)
+  fetch(this.state.domain+"/orderpay/"+params.id, requestOptions)
+  .then(res => res.json())
+  .then(res => {
+    let total = 0;
+          for (var i = 0; i < res.product.length; i++) {
+            total += res.product[i].discountprice * res.product[i].available_quantity;
+          }
+
+          // this.setState({ products, total });
+    this.setState({
+      products : res,
+      total :  total
+    })
+    //  console.log("error state this.state.items==----===----> ",  this.state.total)
+  }).catch(err => err);
+  const requestOptions3 = {
+    method: 'GET',
+    headers: { 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'  },   
+};
+
+
+        const btc_usd_url = 'https://api.cryptonator.com/api/ticker/btc-usd';
+
+        const url = btc_usd_url;
+    
+        axios.get(url).then(res => {
+            // console.log ("res.data naira data-==-->", res.data);
+            if (!res.data.success) {
+                return
+            }
+    
+            const price = Number(res.data.ticker.price);
+            const timestamp = res.data.ticker.timestamp;
+    
+            const curr_pair = 'BTC_USD';
+    
+            this.setState({
+                [curr_pair]: price,
+                Btctotal :res.data.ticker
+            });
+            
+            // console.log("data this.curr_pair--->", this.state.curr_pair)
+    
+        }).catch(err => {
+    
+    });
+  fetch(this.state.domain+"/getcountry/", requestOptions )
+        .then(res => res.json())
+        .then(res => {
+                // console.log("ress--==--=--=-===> 33 getcountry", res)
+                this.setState({
+                  country  : res.data,
+                 
+                  loanPage : true,
+              })
+              this.gettimeout()
+              
+    }).catch(err => err);
+
+     
+
+}
+
+
+    onChange = e =>{
+        let files = e.target.files;
+        this.setState({
+          images : [images.push(files)],
+          count : this.state.count + 1
+        });
+        // console.log("iamge -------->", files)
+        if (images.length  < 3) {
+          this.setState({
+            count: images.length
+          })
+          // console.log(images.length + 1);
+          // console.warn(images.FileList);
+          return false;
+        }
+      }
+
+      
+      getRates = (fromCurr, amount) => {
+        // console.log("data prod cart----3---->",   fromCurr,   amount)  
+        const rate = this.state.BTC_USD ? this.state.BTC_USD : 0;
+
+        if (fromCurr === "USD" ) {
+        
+            return amount / rate;
+        }
+        
+
+        if (fromCurr === "BTC") {
+
+        
+            return amount * rate;
+        
+        }
+    };
+      
+
+
+
+showInput=(e)=>{
+    e.preventDefault()
+  this.setState({
+    showAdd:true
+  })
+    // console.log(w)
+
+}
+
+selectImages = (event) => {
+  let images = []
+  let photos  = []
+  // for (var i = 0; i < event.target.files.length  i++) {
+  // images[i] = event.target.files.item(i);
+  // photos[i] =  URL.createObjectURL(event.target.files.item(i));
+  // }
+  for (var i = 0; i <  event.target.files.length && i < 2 ; i++) {
+      images[i] = event.target.files.item(i);
+      photos[i] =  URL.createObjectURL(event.target.files.item(i))
+  
+   }
+  if(event.target.files.length  !== 0){
+   this.setState({
+     ifImage :true
+   })
+  }else{
+    this.setState({
+      ifImage :false
+    })
+  }
+  // console.log("iamge -------->rt", photos)
+  
+  images = images.filter(image => image.name.match(/\.(jpg|jpeg|png|gif)$/))
+  let message = `${images.length} valid image(s) selected`
+
+  // this.setState({
+  //   photos:images
+  // })
+  this.setState({ images, message , photos})
+  }
+   
+  uploadImages = () => {
+   this.setState({
+    loanData : true
+   }) 
+  const uploaders = this.state.images.map(image => {
+  const data = new FormData();
+  data.append("file", image, image.name);
+   
+  // Make an AJAX upload request using Axios
+  return axios.post(this.state.domain + '/upload', data)
+  .then(response => {
+        // console.log("response", response.data.result)
+        this.setState({
+          imageUrls: [response.data.result, ...this.state.imageUrls ]
+          });
+        
+      })
+     
+  });
+
+  // Once all the files are uploaded 
+    axios.all(uploaders).then(() => {
+      this.forceUpdate(this.state.imageUrls)
+        // console.log('done');
+        }).catch(err => alert(err.message));
+  }
+    
+  
+  forceUpdate=(data)=>{
+    // console.log("data==------->",data)
+    var body2 = {
+      url :data
+    }
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type':'application/json','Access-Control-Allow-Origin': '*' },
+      body: JSON.stringify(body2),
+  };
+  // console.log("requestOptions",requestOptions)
+     fetch(this.state.domain +"/paymentupdate/" +this.state.getId, requestOptions)
+      .then(res => res.json())
+      .then((res)=>{
+        this.timeout2(this.state.getId)
+
+          // console.log("data --====---- > ",result)
+          // if(result.status === "true"){
+          //      this.props.callHistory(result.data._id)
+          //     // console.log("data --====---- > id yes",result.data._id)
+          // }
+          //  this.props.callHistory(re)
+          // this.props.history.replace({
+          //     pathname: '/events/'+ result._id,
+          //     // state: { detail: res}
+          //     state: { notice: "true" , message:"Create Event" }
+          //   })
+      })
+  }
+
+
+ checkChart=(data)=>{
+   this.props.checkChart(data)
+ }
+
+ handleChangebybtc=(e)=>{
+         
+    
+  this.setState({ 
+      loanData:true,
+      // checkedbtc : e,
+      // checked : false,
+      // checkedtrans:false,
+   });
+   var data={
+      checkedbtc:true,
+      checked : false,
+      checkedtrans:false,
+  }
+  // console.log("data--===------ BTC")
+   this.timeout(data)  
+}
+handleChangepayment=(checked)=> {
+
+this.setState({
+  loanData:true,
+  //  checked:checked ,
+  //  checkedbtc : false,
+  //  checkedtrans : false
+  });
+  var data={
+      checkedbtc : false,
+      checked:true,
+      checkedtrans : false
+  }
+   this.timeout(data) 
+}
+handleChangetrans=(e)=>{
+// console.log("data--===------> transts")
+this.setState({
+  loanData:true,
+  // checkedtrans : e,
+  // checked:false ,
+  // checkedbtc : false
+ });
+ var data={
+  checked:false ,
+  checkedbtc : false,
+  checkedtrans : true,
+}
+this.timeout(data) 
+}
+selectChange = (e)=>{
+this.setState({
+  select: e.target.value
+})
+//  console.log("data--===------> contry", e.target.value)
+}
+timeout2(data) {
+  //  console.log("data---====--==> 1",data)
+  setTimeout(function() {
+    // this.props.callHistory(data.id)
+    this.props.history.replace({
+      pathname: '/confirm-order/'+ data,
+      // state: { detail: res}
+      // state: { notice: "true" , message:"Create Event" }
+    })
+  //    console.log(this.state.noticeshow);
+  }.bind(this), 2300);
+}
+
+gettimeout(){
+  setTimeout(function() {
+    this.setState({
+      inBTC : this.getRates("USD", this.state.total),
+    })
+    // console.log("data prod cart----2---->",    this.getRates("USD", this.state.total)) 
+}.bind(this), 2300);
+}
+
+ timeout(data) {
+  // console.log("data---====--==> 1",data)
+  setTimeout(function() {
+      this.setState({
+        submitIftrue : false,
+        loanData:false,
+        checkedbtc : data.checkedbtc,
+        checked:data.checked,
+        checkedtrans : data.checkedtrans
+
+      })
+  //    console.log(this.state.noticeshow);
+  }.bind(this), 2300);
+}
+
+  
+  render() {
+    let fileUpload;
+    let alert;
+    let imageCount = this.state.count;
+    let imageShow;
+    if(imageCount < 3){
+      fileUpload =  <input type="file" class="form-control " name="file" onChange={this.onChange} multiple disabled={this.state.disabled}/>;
+    }else{
+      fileUpload = <input type="file" class="form-control " name="file" onChange={this.onChange} multiple disabled={!this.state.disabled}/>;
+      alert = < span class = "alert alert-info" > Only 3 images are allowed </span>;
+    }
+
+    switch (imageCount) {
+      case 1:
+          imageShow = images.map((link, index) => <li key={index}>{link[0].name}</li> )
+        break;
+      case 2 : 
+        imageShow = images.map((link, index) => <li key={index}>{link[0].name}</li>)
+        break;
+      case 3: 
+        imageShow = images.map((link, index) => <li key={index}>{link[0].name}</li>)
+      default:
+        break;
+    }
+
+    return (
+             <div >
+               <section class="banner_area">
+                <div class="banner_inner d-flex align-items-center banner_edit">
+                    <div class="container">
+                        <div class="banner_content text-center">
+                            <h2>Proof of  pament</h2>
+                           
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="checkout_area p_120">
+               {this.state.loanData?
+                //   <Leader/>
+                    <div class="pre-loader">
+                  <div class="loader"></div>
+                </div> 
+                      :
+                      <div></div>
+                  }
+                  
+                  <div class="container">
+                    
+                  <div class="returning_customer">
+                  
+                        <div class="row">
+                          <div class="col-md-6">
+                          <div className="wrapper-proof-left-body">
+                          <div class="order_details_table">
+                            <h2>Order Details</h2>
+                            {
+                                this.state.products.product ?
+                                <div class="table-responsive">
+                                {
+                                    this.state.products.product.length > 0 ? (
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Product</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                           
+                                        
+                                                    {
+                                                        this.state.products.product.map(data => {
+                                                        return  (
+                                                           <tr>
+                                                                <td>
+                                                                    <p>{data.name}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <h5>x {data.available_quantity}</h5>
+                                                                </td>
+                                                                <td>
+                                                                    <p>
+                                                                    {/* {this. geticom(this.props.currency)} {this.getRates(this.props.currency,   data.available_quantity * data.discountprice).toFixed(2) } */}
+                                                                   $  { (data.available_quantity * data.discountprice).toFixed(2) }
+                                                                         
+                                                                 </p>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                        })
+                                                    }
+                                           
+                                        </tbody>
+                                        
+                                    </table>
+                                   )
+                                    :
+                                    <div></div>
+                                 }
+                                 <div> 
+                                   <hr/>
+                                   <div className="proof-payment-total">
+                                       <b>Sub total</b>: ${this.state.total }
+                                   </div>
+                                 
+                                   {/* <div className="proof-payment-total">   
+                                      <b>In BTC</b>:     { this.state.inBTC}
+                                    </div> */}
+                                 </div>
+
+                                </div>
+                                :
+                                <div></div>
+                            }
+                           
+                        </div>
+                          <div class="wrapper-proof-left">
+                          <div class="panel panel-default">
+                                <h5>Select payment</h5>
+                                <div class="panel-heading">
+                                  <h4 class="panel-title payment_item radio-lab">
+                                    <label  for='pay1' style={{'width': '350px;'}} class="radion_btn">
+                                      <input class="active radio-lab" type='radio' id='pay1' name='payoption' onChange={this.handleChangepayment}  checked={this.state.checked} value='paystack' required />
+                                      <span class="radio-lab">PAY WITH  DEBIT CARD AT  </span> <a target="_blank" style={{marginLeft:"20px"}} href="https://www.bitcoin.com/"> BITCOIN.COM</a>
+                                      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"></a>
+                                      <div class="check"></div>
+                                    </label>
+                                  </h4>
+                                  <img src="./../img/bitcoin.png" alt="bitcoin logo" class="paylogo float-right"></img>
+                                </div>
+                                  {
+                                  this.state.checked ?
+                                      <div id="collapseOne" class="panel-collapse collapse-show body-el">
+                                          <div class="panel-body body-con">
+                                    <p class="body-p text-center">Follow the steps below to pay through bitcoin.com</p>
+                                    <ol class="payment-steps">
+                                               <li>Copy the btc address below</li>
+                                        <div class="ad-div proof-ad-div">
+                                                   <div className="checkout-CopyTo">
+                                                 <CopyToClipboard
+                                                                  onCopy={({ success, text }) => {
+                                                                  var msg = success ? "Copied!" : "Whoops, not copied!";
+                                                                  this.button.innerHTML = msg;
+                                                                  console.log(msg, text);
+                                                                  }}
+                                                                  render={({ copy }) => (
+                                                                  <div>
+                                                                      <input
+                                                                      defaultValue={this.state.wallet }
+                                                                      disabled="disabled"
+                                                                      style={{width:"200%"}}
+                                                                      ref={input => {
+                                                                          this.textInput = input;
+                                                                      }}
+                                                                      />
+                                                                      <br/>
+                                                                  <a  class="btn submit_btn submit_btn-costom " style={{position:"relative",left:"60px", marginTop:"5px"}}
+                                                                      onClick={() => copy(this.textInput.value)}
+                                                                      ref={button => {
+                                                                          this.button = button;
+                                                                      }}
+                                                                      >
+                                                                      Copy
+                                                                  </a>
+                                                                  </div>
+                                                                  )}
+                                                        />
+                                                    </div>    
+                                          {/* <p class="bit-adbox rounded text-center"><strong>Bitcoin Address:</strong> 0xfca65258989debceff40122</p> */}
+                                      </div>
+                                      <li>Go to <a href="https://bitcoin.com" target="_blank">bitcoin.com</a>'s website</li>
+                                      <li>Locate the "Buy Bitcoin" box on the homepage</li>
+                                        <img src="./../img/step-2.png" alt="payment box" class="payimage img-fluid"/>
+                                      <li>Select the "Bitcoin Core" option</li>
+                                        <img src="./../img/step-3.png" alt="payment box" class="payimage img-fluid"/>
+                                      
+                                      <li>Paste the copied address in the "Wallet address" field on the bitcoin.com's website</li>
+                                        <img src="./../img/step-5.png" alt="payment box" class="payimage img-fluid"/>
+                                      <li>Select the amount in USD</li>
+                                        <img src="./../img/step-6.png" alt="payment box" class="payimage img-fluid"/>
+                                      <li>Click the button and proceed to pay</li>
+                                        <img src="./../img/step-7.png" alt="payment box" class="payimage img-fluid"/>
+                                      <li>Input your card details and make payment</li>
+                                      <li>Send us confirmation to our email or chat with us to verify</li>
+                                    </ol>
+                                  </div>
+                                      </div>
+                                  :
+                                    <div></div>
+                                  }
+                                                    
+                              </div>
+                              <div class="panel panel-default">
+										<div class="panel-heading">
+											<h4 class="panel-title payment_item radio-lab">
+												<label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
+													<input type='radio' id='pay2' name='payoption' value='flutterwave' required onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
+													<span class="radio-lab"> BITCOIN USING  WALLET </span> 
+													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+													<div class="check"></div>
+												</label>
+											</h4>
+											<img src="./../img/bitcoin.png" alt="bitcoin logo" class="paylogo float-right"></img>
+										</div>
+                                        {
+                                          this.state.checkedbtc ?
+								      		<div id="collapseOne" class="panel-collapse collapse-show body-el">
+                                              <br/>
+                            
+                                                   <div class="">
+                                                          <p class="body-p text-center"> Please scan the barcode below to make payment or copy btc address</p>
+
+                                                            <QRCode
+                                                                        bgColor="#FFFFFF"
+                                                                        fgColor="#000000"
+                                                                        level="Q"
+                                                                        style={{ width: 250,margin:"auto" }}
+                                                                        value={this.state.wallet}
+                                                                        class="payimage img-fluid qr-image mx-auto d-block"
+                                                                  />
+                                                        {/* <img src="img/qr-code-sample.jpg" alt="payment box" class="payimage img-fluid qr-image mx-auto d-block"/> */}
+                                                        <div class="ad-div">
+                                                        {/* <p class="bit-adbox rounded text-center">  */}
+                                                        <div className="checkout-CopyTo">
+                                                            <CopyToClipboard
+                                                                        onCopy={({ success, text }) => {
+                                                                        var msg = success ? "Copied!" : "Whoops, not copied!";
+                                                                        this.button.innerHTML = msg;
+                                                                        console.log(msg, text);
+                                                                        }}
+                                                                        render={({ copy }) => (
+                                                                        <div>
+                                                                            <input
+                                                                            defaultValue={this.state.wallet}
+                                                                            disabled="disabled"
+                                                                            style={{width:"120%"}}
+                                                                            ref={input => {
+                                                                                this.textInput = input;
+                                                                            }}
+                                                                            />
+                                                                        <a  class="btn submit_btn submit_btn-costom" 
+                                                                            onClick={() => copy(this.textInput.value)}
+                                                                            ref={button => {
+                                                                                this.button = button;
+                                                                            }}
+                                                                            >
+                                                                            Copy
+                                                                        </a>
+                                                                        </div>
+                                                                        )}
+                                                                    />
+                                                               </div>     
+                                                            {/* </p> */}
+                                                            {/* <p class="bit-adbox rounded text-center"><strong>Bitcoin Address:</strong> {this.props.userW.bitcoin_wallet_address}</p> */}
+                                                       
+                                                        </div>
+                                                     </div>
+                                                     :
+                                                     <div> 
+                                                         {/* <p class="body-p text-center">Create an account to have a  personal bitcoin wallet with us</p> */}
+                                                     </div>
+                                                  
+
+                                                  </div>
+                                                :
+                                                <div>
+                                                  
+                                            </div>
+                                            }
+								 
+								                 	</div>
+
+                                   <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                        <h4 class="panel-title payment_item radio-lab">
+                                          <label  for='pay3' style={{'width': '350px;'}} class="radion_btn">
+                                            <input type='radio'   required id='pay3' onChange={this.handleChangetrans}  checked={this.state.checkedtrans }/> 
+                                            <span class="radio-lab">PAYMENT WITH PAYPAL </span>
+                                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree"></a>
+                                            <div class="check"></div>
+                                          </label>
+                                        </h4>
+                                        <img src="./../img/paypal.png" alt="paypal logo" class="paylogo float-right"></img>
+                                      </div>
+                                      {
+                                          this.state.checkedtrans ?
+                                      <div id="collapseOne" class="panel-collapse collapse-show body-el">
+                                        <div class="panel-body body-con">
+                                          <p class=" body-p text-center">Chat with us to find out how to pay using Paypal</p>
+                                        </div>
+                                      </div>
+                                        :
+                                        <div></div>
+                                    }
+                                    </div>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                              <div class="wrapper-proof">
+                            
+                                  <h4>Upload proof of payment </h4><hr/>
+                               
+                                    <div className="wrapper-proof-input">
+                                        <input type="file" 
+                                      id="file" onChange={this.selectImages} multiple/>
+                                      <label for="file" >
+                                        <br/>
+                                        <br/>
+                                        <i class="fas fa-plus" style={{fontSize:"120%"}}></i> <br/>
+                                            {/* <p style={{fontSize:"50%", textAlign:"center"}}> Add photo</p> */}
+                                      </label>
+                              
+
+                                    </div>
+                                       {/* <p className="text-info">{this.state.message}</p> */}
+                                  <br/>
+                                    {
+                                      this.state.photos.map((url, i) => (
+                                        <div  key={i} className="wrapper-proof-image">
+                                          <img src={url} className=""
+                                          alt="not available"/>
+                                        </div>
+                                        ))
+                                      }
+                                  {
+                                      this.state.ifImage ?
+                                      <button class="main_btn"value="Submit"  style={{width:"50%"}}
+                                      onClick={this.uploadImages}>Submit</button>
+                                     :
+                                     <p></p>  
+                                  }
+                                 
+                                </div>
+                              </div>
+                          </div>
+
+               
+                      
+                     
+
+                        {/* { 
+                        this.state.imageUrls.map((url, i) => (
+                        <div className="col-lg-2" key={i}>
+                        <img src={BASE_URL + url} className="img-rounded img-responsive"
+                        alt="not available"/>
+                        </div>
+                        ))
+                        } */}
+  
+{/*                        
+                            <br/><br/>
+                            {alert}
+                            <br/>
+                            <br/>
+                            {imageShow}
+                            <br/>
+                            {this.state.count} number of images
+                            <br/> */}
+  
+                  </div>
+                 </div>
+             </section>
+                   
+                     
+                  
+                    
+      </div>
+    );
+  }
+}
+
+export default Proof ;
+
+
+

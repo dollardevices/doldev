@@ -1,0 +1,30 @@
+.d-flex-costom{
+    width: 40%;
+    height: 200px;
+}
+
+.d-flex-costom img {
+    max-width: 100%;
+    max-height: 90%;
+    display: block;
+    margin: 0 auto;
+}
+.cartarea-no{
+    width: 80%;
+    /* padding: auto; */
+    padding-top: 150px;
+    text-align: center;
+    height: 400px;
+    margin: auto;
+    background: #777777 !important;
+    margin-bottom: 30px
+}
+.cartarea-no h4{
+  color: #fff
+}
+.cartarea-font{
+    font-size: 550%;
+    color: #fff;
+    position: relative;
+    right: 5px;
+}

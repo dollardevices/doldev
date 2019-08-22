@@ -1,0 +1,237 @@
+<div className="checkout-payment-body">
+                                            
+                                            <div className="checkout-payment-sub">
+                                                <div className="checkout-payment-head">
+                                                <label class="radio">
+                                                    <input type="radio" name="r" value="2"onChange={this.handleChangepayment}  checked={this.state.checked}/>
+                                                    <span>Credit Card Visa, Mastercard and AMEX</span>
+                                                </label>
+                                                </div>
+                                                {
+                                                this.state.checked ?
+                                                    <div className="checkout-payment-sub-input">
+                                                       <Cards
+                                                            number={number}
+                                                            name={name}
+                                                            expiry={expiry}
+                                                            cvc={cvc}
+                                                            focused={focused}
+                                                            required
+                                                            // callback={this.handleCallback}
+                                                        />
+                                                        <div className="card-body-payment-sub">
+                                                                <div class="form-group mb-3">
+                                                                        <div class="input-group input-group-alternative">
+                                                                            <div class="input-group-prepend">
+                                                                            <span class="input-group-text"><i class="fas fa-list-ol"></i></span>
+                                                                            </div>
+                                                                            <input 
+                                                                            className="form-control"
+                                                                                type="number"
+                                                                                name="number"
+                                                                                placeholder="Card Number"
+                                                                                onKeyUp={this.handleInputChange}
+                                                                                onFocus={this.handleInputFocus}
+                                                                                ref={input=>this.number = input}
+                                                                                required
+                                                                                
+                                                                            />
+                                                                            
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                        <div class="input-group input-group-alternative">
+                                                                            <div class="input-group-prepend">
+                                                                            <span class="input-group-text"><i class="fas fa-calendar-alt"></i></span>
+                                                                            </div>
+                                                                            <input
+                                                                                className="form-control"
+                                                                                    type="tel"
+                                                                                    name="expiry"
+                                                                                    placeholder="Valid Thru"
+                                                                                    onKeyUp={this.handleInputChange}
+                                                                                    onFocus={this.handleInputFocus}
+                                                                                    ref={input=>this.expiry = input}
+                                                                                    required
+                                                                                /> 
+                                                                                {/* <input class="form-control"
+                                                                            ref={input=>this.password = input}  onChange={this.handleChange}
+                                                                            placeholder="Password" type="password"/> */}
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                        <div class="input-group input-group-alternative">
+                                                                            <div class="input-group-prepend">
+                                                                            <span class="input-group-text"><i class="fas fa-unlock-alt"></i></span>
+                                                                            </div>
+                                                                            <input
+                                                                            className="form-control"
+                                                                            type="tel"
+                                                                            name="cvc"
+                                                                            placeholder="CVC"
+                                                                            ref={input=>this.cvc = input}
+                                                                            onKeyUp={this.handleInputChange}
+                                                                            onFocus={this.handleInputFocus}
+                                                                            required
+                                                                            />
+                                                                    
+                                                                        </div>
+                                                                        </div>
+                                                                        <div class="form-group">
+                                                                        <div class="input-group input-group-alternative">
+                                                                            <div class="input-group-prepend">
+                                                                            <span class="input-group-text"><i class="fas fa-user-tag"></i></span>
+                                                                            </div>
+                                                                            <input
+                                                                                className="form-control"
+                                                                                type="text"
+                                                                                name="name"
+                                                                                placeholder="Name"
+                                                                                onKeyUp={this.handleInputChange}
+                                                                                onFocus={this.handleInputFocus}
+                                                                                // pattern="[a-z]{1,15}"
+                                                                                ref={input=>this.name = input}
+                                                                                // pattern="[a-z]{1,15}"
+                                                                                required
+                                                                            />
+                                                                            
+                                                                        </div>
+                                                                        </div>
+                                                                        {/* <div class="custom-control custom-control-alternative custom-checkbox">
+                                                                        <input class="custom-control-input" id=" customCheckLogin" type="checkbox"/>
+                                                                        <label class="custom-control-label" for=" customCheckLogin">
+                                                                            <span class="text-muted">Remember me</span>
+                                                                        </label>
+                                                                        </div> */}
+                                                                       
+    
+                                                     </div>
+                                              
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                    </div>
+                                                 }       
+                                           </div> 
+                                          
+                                           <div className="checkout-payment-sub">
+                                                <div className="checkout-payment-head">
+                                                <label class="radio">
+                                                    <input type="radio" name="r" value="2"onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
+                                                    <span> Pay With BTC</span>
+                                                </label>
+                                                </div>
+                                                {
+                                                this.state.checkedbtc ?
+                                                    <div className="checkout-payment-sub-input">
+                                                     <div className="checkout-payment-sub-btc">
+                                                      <div class="">
+                                                        <div class=" ">
+                                                            <nav>
+                                                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                                                                <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Scan</a>
+                                                                <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Copy</a>
+                                                               
+                                                                </div>
+                                                            </nav>
+                                                            <div class="tab-content " id="nav-tabContent">
+                                                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                                                    
+                                                                   <div style={{width:"80%",margin:"auto",marginLeft:"50px"}}>
+                                                                   <h4> Amount In Btc   :{this.state.inBTC}</h4>
+                                                                     <QRCode
+                                                                            bgColor="#FFFFFF"
+                                                                            fgColor="#000000"
+                                                                            level="Q"
+                                                                            style={{ width: 300,margin:"auto" }}
+                                                                            value="1DYwJZfyGy5DXaqXpgzuj8shRefxQ7jCEw"
+                                                                        />
+                                                                   </div>
+                                                                </div>
+                                                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                                                                 <div className="copycheckout-code">
+                                                                 To complete your payment, please send 0.00015681 BTC to the address below.
+                                                                      <div className="copycheckout-code-sub">
+                                                                                 <b>AMOUNT</b> 
+                                                                                 <br/>
+                                                                                 <br/>
+
+                                                                              <h3>{this.state.inBTC}</h3>
+                                                                    
+                                                                      </div>   
+                                                                    <CopyToClipboard
+                                                                            onCopy={({ success, text }) => {
+                                                                            var msg = success ? "Copied!" : "Whoops, not copied!";
+                                                                            this.button.innerHTML = msg;
+                                                                            console.log(msg, text);
+                                                                            }}
+                                                                            render={({ copy }) => (
+                                                                            <div>
+                                                                                <input
+                                                                                defaultValue="jgdgkgdonk9848709978647uij2ko4ui"
+                                                                                disabled="disabled"
+                                                                                style={{width:"78%"}}
+                                                                                ref={input => {
+                                                                                    this.textInput = input;
+                                                                                }}
+                                                                                />
+                                                                                <a  class="btn submit_btn submit_btn-costom" 
+                                                                                onClick={() => copy(this.textInput.value)}
+                                                                                ref={button => {
+                                                                                    this.button = button;
+                                                                                }}
+                                                                                >
+                                                                                Copy
+                                                                                </a>
+                                                                            </div>
+                                                                            )}
+                                                                        />
+                                                                  </div>   
+                                                                
+                                                                </div>
+                                                               
+                                                              </div>
+                                                            </div>
+                                                         </div>
+                                                       </div>
+                                                    </div>
+                                                    :
+                                                    <div>
+                                                    </div>
+                                                 }    
+                                                 
+                                           </div> 
+                                           <div className="checkout-payment-head">
+                                                <label class="radio">
+                                                    <input type="radio" name="r" value="2"onChange={this.handleChangetrans}  checked={this.state.checkedtrans }/>
+                                                    <span>Credit Card Visa, Mastercard and AMEX</span>
+                                                </label>
+                                                </div>
+                                                {
+                                                this.state.checkedtrans ?
+                                                    <div className="checkout-payment-sub-input">
+                                                        Pay now 36,000.00 NGN in a secure way
+Pay securely with your bank card (Verve, Visa, Mastercard) or with your Zenith/ FCMB/Access/Fidelity bank account. Bank transfers with Zenith limited to 20,000 NGN, while bank transfers via FCMB and Access Bank are limited to 100,000 NGN
+                                                     </div>
+                                                     :
+                                                     <div></div>
+                                                }
+                                             <div class="text-center">
+                                                    <div class="creat_account">
+                                                        
+                                                        <label for="f-option4">I’ve read and accept the </label>
+                                                        <a href="#">terms &amp; conditions*</a>
+                                                    </div>
+                                                                
+                                                    {
+                                                        this.state. submitIftrue ?
+                                                        <div class="spinner"></div>
+                                                        
+                                                        :
+                                                        <button class="main_btn" href="#" style={{"width":"100%"}}>Proceed to Paypal</button>
+                                                    }
+                                                            
+                                                                        
+                                              </div>
+                                            
+                                        </div>
