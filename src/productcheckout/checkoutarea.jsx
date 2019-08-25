@@ -30,8 +30,8 @@ class CheckoutArea extends Component {
           focused: '',
           isChecked: true,
           domainC: "https://dollardeviceback.herokuapp.com/api", 
-        //   domain: "http://localhost:4000/api", 
-          domain: 'https://dollardeviceback.herokuapp.com/api', 
+        //  domain: "http://localhost:4000/api", 
+          domain: 'https://showend.herokuapp.com/api', 
           isAuthenticated : false,
           select : "",
           country  : [],
@@ -69,7 +69,7 @@ class CheckoutArea extends Component {
         var len = 7;
       
         
-     console.log("rendom number ==----->",  parseInt((Math.random() * 9 + 1) * Math.pow(10,len-1), 10) )
+    //  console.log("rendom number ==----->",  parseInt((Math.random() * 9 + 1) * Math.pow(10,len-1), 10) )
 
         const btc_usd_url = 'https://api.cryptonator.com/api/ticker/btc-usd';
         
@@ -192,32 +192,59 @@ class CheckoutArea extends Component {
   
 
     makePayment = (event)=>{
-
+      
             event.preventDefault()
         
             this.setState({ 
                 loanData:true,
             
             });
-           
+            // console.log("data",event)
+        if(this.state.checked){
+            var  data = {
+                fullname :   this.firstname.value + "  "+ this.lastname.value,
+                phone  :  this.phone.value, 
+                address1 :   this.address1.value ,
+                address2 :  this.address2.value ,
+                address3 :   this.address3.value ,
+                address4 :  this.address4.value ,
+                city1  :  this.city1.value,
+                city  :  this.city.value,
+                postcode  :   this.zip.value,
+                country: this.state.select,
+                email : this.email.value ,
+                total : this.state.total,
+                product : this.state.products,
+                number: this.state.number,
+                name: this.state.name,
+                state : this.state1.value,
+                expiry: this.state.expiry,
+                cvc: this.state.cvc
+                
+             }
+        }else{
+            var  data = {
+                fullname :   this.firstname.value + "  "+ this.lastname.value,
+                phone  :  this.phone.value, 
+                address1 :   this.address1.value ,
+                address2 :  this.address2.value ,
+                city  :  this.city.value,
+               
+                postcode  :   this.zip.value,
+                country: this.state.select,
+                email : this.email.value ,
+                total : this.state.total,
+                product : this.state.products,
+                number: this.state.number,
+                name: this.state.name,
+                state : this.state1.value,
+                expiry: this.state.expiry,
+                cvc: this.state.cvc
+                
+             }
+
+        }
         
-         var  data = {
-            fullname :   this.firstname.value + "  "+ this.lastname.value,
-            phone  :  this.phone.value, 
-            address1 :   this.address1.value ,
-            address2 :  this.address2.value ,
-            city  :  this.city.value,
-            postcode  :   this.zip.value,
-            country: this.state.select,
-            email : this.email.value ,
-            total : this.state.total,
-            product : this.state.products,
-            number: this.state.number,
-            name: this.state.name,
-            expiry: this.state.expiry,
-            cvc: this.state.cvc
-            
-         }
          this.setState({
           submitIftrue : true
          })
@@ -233,12 +260,8 @@ class CheckoutArea extends Component {
             .then((res)=>{
                 // console.log("data --====---- > ",result)
                 if(res.status === "true"){
-                    //  this.props.callHistory(result.data._id)
-                    this.props.history.replace({
-                        pathname: '/events/'+ res._id,
-                        // state: { detail: res}
-                        state: { notice: "true" , message:"Create Event" }
-                      })
+                      this.props.callHistory(res.data._id)
+                  
                     // console.log("data --====---- > id yes",result.data._id)
                 }
                 //  this.props.callHistory(re)
@@ -409,17 +432,17 @@ class CheckoutArea extends Component {
                      
                  };
             //   console.log("data" , requestOptions1,)
-                 return fetch(this.state.domain+"/users/"+ Auth.getProfile().id, requestOptions1 )
-                 .then(res => res.json())
-                 .then(res => {
-                    //  console.log("res getting user data", res);
-                     if(res.code !== 400){
-                        this. setState({
-                            isAuthenticated : true,
-                         })
+                //  return fetch(this.state.domain+"/users/"+ Auth.getProfile().id, requestOptions1 )
+                //  .then(res => res.json())
+                //  .then(res => {
+                //     //  console.log("res getting user data", res);
+                //      if(res.code !== 400){
+                //         this. setState({
+                //             isAuthenticated : true,
+                //          })
                                 
-                         }
-                  })
+                //          }
+                //   })
               }
            
          }).catch( (error) => {
@@ -585,7 +608,7 @@ render(){
                                 
                                 <div class="col-lg-8">
                                     
-                                    <h3>Billing Information</h3>
+                                    <h3>Shipping address</h3>
                                         <div class="col-md-6 form-group p_star">
                                             <input type="text" class="form-control"
                                             ref={input=>this.firstname = input}
@@ -638,13 +661,7 @@ render(){
                                                 </select>
     
                                                  }   
-                                                    {/* <div class="nice-select country_select" tabindex="0"><span class="current">Country</span>
-                                                        <ul class="list">
-                                                            <li data-value="1" class="option selected">Country</li>
-                                                            <li data-value="2" class="option">Country</li>
-                                                            <li data-value="4" class="option">Country</li>
-                                                        </ul>
-                                                    </div> */}
+                                                   
                                                 </div>
                                                     
                                              :
@@ -674,6 +691,7 @@ render(){
                                             id="city" name="city" placeholder="Town/City" required/>
                                             {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
                                         </div>
+                                        
                                        
                                         <div class="col-md-12 form-group">
                                             <input type="text" class="form-control" id="zip" name="zip"
@@ -681,24 +699,32 @@ render(){
                                               onChange={this.handleChange}
                                              placeholder="Postcode/ZIP" required/>
                                         </div>
+                                        <div class="col-md-12 form-group p_star">
+                                            <input type="text" class="form-control"
+                                              ref={input=>this.state1 = input}
+                                              onChange={this.handleChange}
+                                            id="city" name="city" placeholder="State" required/>
+                                            {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
+                                        </div>
                                         <div class="col-md-12 form-group panel-group" id="accordion">
 
-                                        <h4 class="panel-title payment_item radio-lab">
+                                           <h4 class="panel-title payment_item radio-lab">
 												<label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
-													<input type='radio' id='pay2' name='payoption' value='flutterwave' required onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
+													<input type='radio' id='pay2' name='payoption' value=''  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
 													<span class="radio-lab"> Do you want to used the shipping address as billing address   </span> 
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
 													<div class="check"></div>
 												</label>
 											</h4>
 
+
                                             {
                                             
-                                               !this.state.checked ?
+                                               this.state.checked ?
                                                     <div>
                                                           <div class="col-md-12 form-group p_star">
                                                                 <input type="text" class="form-control" id="add1"
-                                                                ref={input=>this.address1 = input}
+                                                                ref={input=>this.address3 = input}
                                                                 onChange={this.handleChange}
                                                                 name="add1" placeholder="Address line 01" required/>
                                                                 {/* <span class="placeholder" data-placeholder="Address line 01"></span> */}
@@ -706,14 +732,14 @@ render(){
                                                             
                                                             <div class="col-md-12 form-group p_star">
                                                                 <input type="text" class="form-control"
-                                                                    ref={input=>this.address2 = input}
+                                                                    ref={input=>this.address4 = input}
                                                                     onChange={this.handleChange}
                                                                 id="add2" name="add2" placeholder="Address line 02" required/>
                                                                 {/* <span class="placeholder" data-placeholder="Address line 02"></span> */}
                                                             </div>
                                                             <div class="col-md-12 form-group p_star">
                                                                 <input type="text" class="form-control"
-                                                                ref={input=>this.city = input}
+                                                                ref={input=>this.city1 = input}
                                                                 onChange={this.handleChange}
                                                                 id="city" name="city" placeholder="Town/City" required/>
                                                                 {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
@@ -728,6 +754,112 @@ render(){
 									
                                    
 								</div>
+                                    <div className="enter-card-checkout">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title payment_item radio-lab">
+                                                <label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
+                                                    {/* <input type='radio' id='pay2' name='payoption' value='flutterwave' required onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/> */}
+                                                    <span class="radio-lab"> ENTER DEBIT CARD DETAILS </span> 
+                                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+                                                    {/* <div class="check"></div> */}
+                                                </label>
+                                            </h4>
+                                    
+                                        </div>
+                                            <div id="collapseOne" class="panel-collapse collapse-show body-el">
+                                                <br/>
+                                                <Cards
+                                                number={number}
+                                                name={name}
+                                                expiry={expiry}
+                                                cvc={cvc}
+                                                focused={focused}
+                                                required
+                                              
+                                            />
+                                            
+                                            <div className="card-body-payment-sub">
+                                            <div class="form-group mb-3">
+                                                    <div class="input-group input-group-alternative">
+                                                        {/* <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                                                        </div> */}
+                                                        <input 
+                                                        className="form-control"
+                                                            type="number"
+                                                            name="number"
+                                                            placeholder="Card Number"
+                                                            onKeyUp={this.handleInputChange}
+                                                            onFocus={this.handleInputFocus}
+                                                            ref={input=>this.number = input}
+                                                            required
+                                                            
+                                                        />
+                                                        
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <div class="input-group input-group-alternative">
+                                                        {/* <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                                        </div> */}
+                                                        <input
+                                                            className="form-control"
+                                                                type="tel"
+                                                                name="expiry"
+                                                                placeholder="Valid Thru"
+                                                                onKeyUp={this.handleInputChange}
+                                                                onFocus={this.handleInputFocus}
+                                                                ref={input=>this.expiry = input}
+                                                                required
+                                                            /> 
+                                                            {/* <input class="form-control"
+                                                        ref={input=>this.password = input}  onChange={this.handleChange}
+                                                        placeholder="Password" type="password"/> */}
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <div class="input-group input-group-alternative">
+                                                        {/* <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                                        </div> */}
+                                                        <input
+                                                        className="form-control"
+                                                        type="tel"
+                                                        name="cvc"
+                                                        placeholder="CVC"
+                                                        ref={input=>this.cvc = input}
+                                                        onKeyUp={this.handleInputChange}
+                                                        onFocus={this.handleInputFocus}
+                                                        required
+                                                        />
+                                                
+                                                    </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                    <div class="input-group input-group-alternative">
+                                                        {/* <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                                                        </div> */}
+                                                        <input
+                                                            className="form-control"
+                                                            type="text"
+                                                            name="name"
+                                                            placeholder="Name"
+                                                            onKeyUp={this.handleInputChange}
+                                                            onFocus={this.handleInputFocus}
+                                                            // pattern="[a-z]{1,15}"
+                                                            ref={input=>this.name = input}
+                                                            // pattern="[a-z]{1,15}"
+                                                            required
+                                                        />
+                                                        
+                                                    </div>
+                                                    </div>
+                                            </div>
+                                          </div>
+                                         
+                                      </div>
                                  
                                 
                                          
@@ -792,21 +924,7 @@ render(){
                                                 }</span></a></li>
                                         </ul>
 
-{/*                                   
-                                    <div class="payment_item">
-                                        <div class="radion_btn">
-                                        <Switch onChange={this.handleChangepayment} checked={this.state.checked} /> 
-                                        {
-                                       ! this.state.checked ?
-                                           <b className="checkout-costom"> USED BTC</b>
-                                           :
-                                           <b className="checkout-costom"> USED CARD PAYMENT</b>
-                                        }
-                                        </div>
-                                       
-                                    </div> */}
-                                   
-                                  
+
                                  
 
                                             <div class="">
@@ -817,7 +935,7 @@ render(){
                                                 <img src="img/product/single-product/card.jpg" alt=""/>
                                                 {/* <div class="check"></div> */}
                                             </div>
-                                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p>
+                                            {/* <p>Please send a check to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</p> */}
                                         </div>
                                            
                                             {/* <h4> Amount In Btc :{this.state.inBTC}</h4> */}
@@ -826,98 +944,9 @@ render(){
                                               
                                          {/* <p class="body-p text-center">Input card data</p> */}
                                          <div className="div-card-chectout">
-                                         <Cards
-                                                number={number}
-                                                name={name}
-                                                expiry={expiry}
-                                                cvc={cvc}
-                                                focused={focused}
-                                                required
-                                              
-                                            />
-                                            <form   onSubmit={this.makePayment}>
-                                            <div className="card-body-payment-sub">
-                                            <div class="form-group mb-3">
-                                                    <div class="input-group input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                                                        </div>
-                                                        <input 
-                                                        className="form-control"
-                                                            type="number"
-                                                            name="number"
-                                                            placeholder="Card Number"
-                                                            onKeyUp={this.handleInputChange}
-                                                            onFocus={this.handleInputFocus}
-                                                            ref={input=>this.number = input}
-                                                            required
-                                                            
-                                                        />
-                                                        
-                                                    </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <div class="input-group input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                                        </div>
-                                                        <input
-                                                            className="form-control"
-                                                                type="tel"
-                                                                name="expiry"
-                                                                placeholder="Valid Thru"
-                                                                onKeyUp={this.handleInputChange}
-                                                                onFocus={this.handleInputFocus}
-                                                                ref={input=>this.expiry = input}
-                                                                required
-                                                            /> 
-                                                            {/* <input class="form-control"
-                                                        ref={input=>this.password = input}  onChange={this.handleChange}
-                                                        placeholder="Password" type="password"/> */}
-                                                    </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <div class="input-group input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                                        </div>
-                                                        <input
-                                                        className="form-control"
-                                                        type="tel"
-                                                        name="cvc"
-                                                        placeholder="CVC"
-                                                        ref={input=>this.cvc = input}
-                                                        onKeyUp={this.handleInputChange}
-                                                        onFocus={this.handleInputFocus}
-                                                        required
-                                                        />
-                                                
-                                                    </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                    <div class="input-group input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                                                        </div>
-                                                        <input
-                                                            className="form-control"
-                                                            type="text"
-                                                            name="name"
-                                                            placeholder="Name"
-                                                            onKeyUp={this.handleInputChange}
-                                                            onFocus={this.handleInputFocus}
-                                                            // pattern="[a-z]{1,15}"
-                                                            ref={input=>this.name = input}
-                                                            // pattern="[a-z]{1,15}"
-                                                            required
-                                                        />
-                                                        
-                                                    </div>
-                                                    </div>
-                                                    
-                                                  
-                                                
-
+                                        
+                                     
+                                            <div className="">
                                                 <div class="creat_account">
                                             
                                                   
@@ -938,7 +967,7 @@ render(){
                                         }
                                             
                                             
-                                           </form>
+                                     
                                          </div>
                                                   
                                                                 
@@ -947,23 +976,6 @@ render(){
                                                 </div>
                                                 
                                             </div>
-                                        
-                     
-                                        {/* <div class="payment_item active">
-                                            <div class="radion_btn">
-                                                <input type="radio" id="f-option6" name="selector"/>
-                                                <label for="f-option6">Paypal </label>
-                                                <img src="img/product/single-product/card.jpg" alt=""/>
-                                                <input type="checkbox" id="f-option4" 
-    
-                                             checked={this.state.isChecked}
-                                             onChange={this.toggleChange}
-                                            name="selector" />
-                                            </div>
-                                         
-                                        </div> */}
-    
-                                      
                                     </div>
                                 </div>
                             </div>
@@ -1005,14 +1017,7 @@ render(){
                               </form> */}
                          </div>
                     }
-                    
-                    {/* <div class="cupon_area">
-                        <div class="check_title">
-                            <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
-                        </div>
-                        <input type="text" placeholder="Enter coupon code"/>
-                        <a class="tp_btn" href="#">Apply Coupon</a>
-                    </div> */}
+                   
                   
                     
                 </div>

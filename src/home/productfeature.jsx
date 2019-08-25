@@ -105,7 +105,7 @@ class ProductFeature extends Component {
                             <div className="row hot_product_inner">
                                 <div className="col-lg-6">
                                     <div className="hot_p_item">
-                                        <img className="img-fluid" src="img/step-16.jpg" alt="" />
+                                        <img className="img-fluid" src="https://res.cloudinary.com/easywaya/image/upload/v1566729113/step-16_ep4y7s.jpg" alt="" />
                                         <div className="product_text">
                                             {/* <h4>Hot Deals of <br/>this Month</h4> */}
                                             {/* <a href="#">Shop Now</a> */}
@@ -114,7 +114,7 @@ class ProductFeature extends Component {
                                 </div>
                                 <div className="col-lg-6">
                                     <div className="hot_p_item">
-                                        <img className="img-fluid" src="img/step-14.jpg" alt="" />
+                                        <img className="img-fluid" src="https://res.cloudinary.com/easywaya/image/upload/v1566729113/step-14_bjfsbt.jpg" alt="" />
                                         <div className="product_text">
                                             {/* <h4>Hot Deals of <br/>this Month</h4> */}
                                             {/* <a href="#">Shop Now</a> */}

@@ -30,7 +30,7 @@ class  OrderDetails extends Component {
         
 
         if (fromCurr  === "USD" ) {
-            console.log("data --->>",this.props.rate.AUD  * amount )
+            // console.log("data --->>",this.props.rate.AUD  * amount )
             
            
            

@@ -54,7 +54,7 @@ class CatProductArea extends Component {
         fetch(this.state.domain+"/getip2/", requestOptions )
         .then(res => res.json())
         .then(res => {
-                 console.log("ress--==--=--=-===>   region ", res.result.currency)
+                //  console.log("ress--==--=--=-===>   region ", res.result.currency)
             this.setState({
                 currency : res.result.currency, 
 
@@ -64,7 +64,7 @@ class CatProductArea extends Component {
         fetch(this.state.domain+'/getmoney', requestOptions)
         .then(res => res.json())
         .then((res)=>{
-            console.log("data -------> setGlobalpayer--->2", res)
+            // console.log("data -------> setGlobalpayer--->2", res)
             
                this.setState({
                   rate:res.data.rates

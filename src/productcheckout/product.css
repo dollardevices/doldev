@@ -5,7 +5,7 @@
 }
 
 .card-body-payment-sub{
-  width: 98%;
+  width: 68%;
   margin: auto;
   margin-top: 10px;
 
@@ -13,6 +13,10 @@
 .div-card-chectout{
   position: relative;
   right: 13px;
+}
+.enter-card-checkout{
+  width: 85%;
+  margin: auto
 }
 .checkout-payment-head{
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);

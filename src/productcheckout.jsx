@@ -115,7 +115,12 @@ const Auth = new AuthService();
   callHistory=(data)=>{
     // console.log("------>/confirm-order")
     this.props.history.replace({
-      pathname: '/proof/'+ data,
+      // pathname: '/proof/'+ data,
+      
+        pathname: '/confirm-order/'+ data,
+        // state: { detail: res}
+        state: { notice: "true" , message:"Create Event" }
+     
       // state: { detail: res}
       // state: { notice: "true" , message:"Create Event" }
     })

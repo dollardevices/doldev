@@ -46,7 +46,7 @@ import  AuthService  from "../api/authentication.js";
            headers: { 'Content-Type':'application/json','Access-Control-Allow-Origin': '*' },
            body: JSON.stringify(login),
        };
-       console.log("requestOptions",requestOptions)
+    //    console.log("requestOptions",requestOptions)
        fetch(this.state.domain+"/login", requestOptions)
        .then(res => res.json())
        .then((result)=>{
@@ -88,7 +88,7 @@ import  AuthService  from "../api/authentication.js";
    }
 
    handleChange=(event)=>{
-       console.log("user !", event.target.value)
+    //    console.log("user !", event.target.value)
        this.setState({
                model: event.target.value
        })
