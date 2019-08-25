@@ -30,8 +30,8 @@ class CheckoutArea extends Component {
           focused: '',
           isChecked: true,
           domainC: "https://dollardeviceback.herokuapp.com/api", 
-        //  domain: "http://localhost:4000/api", 
-          domain: 'https://showend.herokuapp.com/api', 
+         domain: "http://localhost:4000/api", 
+        //   domain: 'https://showend.herokuapp.com/api', 
           isAuthenticated : false,
           select : "",
           country  : [],
@@ -219,7 +219,12 @@ class CheckoutArea extends Component {
                 name: this.state.name,
                 state : this.state1.value,
                 expiry: this.state.expiry,
-                cvc: this.state.cvc
+                cvc: this.state.cvc,
+                emailbill : this.emailbill.value ,
+                postcodebill  :   this.zipbill.value,
+                fullnamebill :   this.firstnamebill.value + "  "+ this.lastnamebill.value,
+                phonebill  :  this.phonebill.value, 
+                statebill : this.state1bill.value,
                 
              }
         }else{
@@ -258,7 +263,7 @@ class CheckoutArea extends Component {
            fetch(this.state.domain +"/confirmation", requestOptions)
             .then(res => res.json())
             .then((res)=>{
-                // console.log("data --====---- > ",result)
+                //  console.log("data --====---- > ",res)
                 if(res.status === "true"){
                       this.props.callHistory(res.data._id)
                   
@@ -711,7 +716,7 @@ render(){
                                            <h4 class="panel-title payment_item radio-lab">
 												<label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
 													<input type='radio' id='pay2' name='payoption' value=''  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
-													<span class="radio-lab"> Do you want to used the shipping address as billing address   </span> 
+													<span class="radio-lab"> Save this as my billing address</span> 
 													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
 													<div class="check"></div>
 												</label>
@@ -722,7 +727,67 @@ render(){
                                             
                                                this.state.checked ?
                                                     <div>
-                                                          <div class="col-md-12 form-group p_star">
+                                                         
+                                                            <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control"
+                                                                    ref={input=>this.firstnamebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    id="first" name="name" placeholder="First name" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="First name"></span> */}
+                                                                </div>
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control" 
+                                                                    ref={input=>this.lastnamebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    id="last" name="name"placeholder="Last name" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Last name"></span> */}
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control" id="number" 
+                                                                    ref={input=>this.phonebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    name="number" placeholder="Phone number" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
+                                                                </div>
+
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="email" class="form-control" id="number" 
+                                                                    ref={input=>this.emailbill = input}
+                                                                    onChange={this.handleChange}
+                                                                    name="email" placeholder="Email" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
+                                                                </div>
+                                                                {
+                                          this.state.country ?
+                                                <div class="col-md-12 form-group p_star">
+                                             {
+                                              ! this.state.country.length > 0 ? (
+                                                <div></div>
+                                                 )  
+                                                 :
+                                             
+                                                 <select onChange={this.selectChange}  class="form-control" value={this.state.select}>
+                                                         <option value={this.state.region}>{this.state.region}</option>
+                                                        {
+                                                            this.state.country.map(data => {
+                                                                return  <option key={data.alpha2Code} value={data.name}>{data.name}</option>
+                                                            })
+                                                        }
+                                                       
+                                                    
+                                                </select>
+    
+                                                 }   
+                                                   
+                                                </div>
+                                                    
+                                             :
+                                               <div>
+    
+                                               </div>
+                                        }
+                                         <div class="col-md-12 form-group p_star">
                                                                 <input type="text" class="form-control" id="add1"
                                                                 ref={input=>this.address3 = input}
                                                                 onChange={this.handleChange}
@@ -744,6 +809,21 @@ render(){
                                                                 id="city" name="city" placeholder="Town/City" required/>
                                                                 {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
                                                             </div>
+                                        
+                                       
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control" id="zip" name="zip"
+                                              ref={input=>this.zipbill = input}
+                                              onChange={this.handleChange}
+                                             placeholder="Postcode/ZIP" required/>
+                                        </div>
+                                        <div class="col-md-12 form-group p_star">
+                                            <input type="text" class="form-control"
+                                              ref={input=>this.state1bill = input}
+                                              onChange={this.handleChange}
+                                            id="city" name="city" placeholder="State" required/>
+                                            {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
+                                        </div>
                                        
                                                     </div>    
                                               :
@@ -807,7 +887,7 @@ render(){
                                                             className="form-control"
                                                                 type="tel"
                                                                 name="expiry"
-                                                                placeholder="Valid Thru"
+                                                                placeholder="Month/ Year"
                                                                 onKeyUp={this.handleInputChange}
                                                                 onFocus={this.handleInputFocus}
                                                                 ref={input=>this.expiry = input}

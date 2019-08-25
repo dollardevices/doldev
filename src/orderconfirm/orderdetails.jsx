@@ -130,7 +130,7 @@ render(){
                                         <li><a ><span>Name</span> : {this.props.data.fullname}</a></li>
                                         <li><a ><span>Date</span> : {this.props.data.created_at}</a></li>
                                         <li><a ><span>Total</span> : USD {this.props.data.total}</a></li>
-                                        <li><a ><span>Payment method</span> : {this.props.data.payment}</a></li>
+                                      
                                     </ul>
                                 </div>
                             </div>

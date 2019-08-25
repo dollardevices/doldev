@@ -120,7 +120,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
                                   :
                                   <li className="nav-item"><i className="lnr lnr lnr-cart"></i> </li>
                                   }
-                                  {
+                                  {/* {
                                     this.props.isAuthenticated?
                                     <li className="nav-item">
 
@@ -128,7 +128,7 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
                                     </li>
                                     :
                                     <li></li>
-                                  }
+                                  } */}
                                      
                                 </ul>
                             </div>
