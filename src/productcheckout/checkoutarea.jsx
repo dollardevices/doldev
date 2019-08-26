@@ -481,21 +481,31 @@ class CheckoutArea extends Component {
      }
 
      handleChangebybtc=(e)=>{
-         
-    
+        //  console.log("dataof check")
+      if(this.state.checked){
             this.setState({ 
-                loanData:true,
+                // loanData:true,
+                checked:false
                 // checkedbtc : e,
                 // checked : false,
                 // checkedtrans:false,
              });
-             var data={
-                checkedbtc:true,
-                checked : false,
-                checkedtrans:false,
-            }
+      }else{
+        this.setState({ 
+            // loanData:true,
+            checked:true
+            // checkedbtc : e,
+            // checked : false,
+            // checkedtrans:false,
+         });
+      } 
+            //  var data={
+            //     checkedbtc:true,
+            //     checked : false,
+            //     checkedtrans:false,
+            // }
             // console.log("data--===------ BTC")
-             this.timeout(data)  
+            //  this.timeout(data)  
      }
     handleChangepayment=(checked)=> {
        
@@ -513,19 +523,25 @@ class CheckoutArea extends Component {
              this.timeout(data) 
       }
       handleChangetrans=(e)=>{
-        // console.log("data--===------> transts")
-        this.setState({
-            loanData:true,
-            // checkedtrans : e,
-            // checked:false ,
-            // checkedbtc : false
-           });
-           var data={
-            checked:false ,
-            checkedbtc : false,
-            checkedtrans : true,
-        }
-         this.timeout(data) 
+        //  console.log("data--===------> transts")
+        if(this.state.checkedbtc ){
+            this.setState({ 
+                // loanData:true,
+                checkedbtc :false
+                // checkedbtc : e,
+                // checked : false,
+                // checkedtrans:false,
+             });
+      }else{
+        this.setState({ 
+            // loanData:true,
+            checkedbtc :true
+            // checkedbtc : e,
+            // checked : false,
+            // checkedtrans:false,
+         });
+      } 
+        
       }
      selectChange = (e)=>{
         this.setState({
@@ -560,9 +576,9 @@ class CheckoutArea extends Component {
             this.setState({
               submitIftrue : false,
               loanData:false,
-              checkedbtc : data.checkedbtc,
-              checked:data.checked,
-              checkedtrans : data.checkedtrans
+            //   checkedbtc : data.checkedbtc,
+            //   checked:data.checked,
+            //   checkedtrans : data.checkedtrans
 
             })
         //    console.log(this.state.noticeshow);
@@ -712,15 +728,21 @@ render(){
                                             {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
                                         </div>
                                         <div class="col-md-12 form-group panel-group" id="accordion">
-
-                                           <h4 class="panel-title payment_item radio-lab">
-												<label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
-													<input type='radio' id='pay2' name='payoption' value=''  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
-													<span class="radio-lab"> Save this as my billing address</span> 
-													<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
-													<div class="check"></div>
-												</label>
-											</h4>
+                                        
+                                      
+                            
+                                       
+                                            <div class="panel-heading panel-heading-costom" >
+                                           
+                                            <input type="checkbox" style={{position:"relative",left:"23px"}}  onChange={this.handleChangebybtc}  checked={this.state.checked} />
+                                             <span class="radio-lab"> Save this as my billing address</span>  
+                                            </div>
+                                           
+													{/* <input  type="checkbox" id="f-option4" name="selector"  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
+													<span class="radio-lab"> Save this as my billing address</span>  */}
+													{/* <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+													<div class="check"></div> */}
+												
 
 
                                             {
@@ -936,6 +958,28 @@ render(){
                                                         
                                                     </div>
                                                     </div>
+                                                    <div className="">
+                                                <div class="creat_account creat_account-costom " style={{width:"100%"}}>
+                                            
+                                                {/* <input type="checkbox"  required/> */}
+                                                    <input type="checkbox" id="f-option4" name="selector"     required/>
+                                                    <label for="f-option4">I’ve read and accept the   <a href="/about-us">terms &amp; conditions*</a> </label>
+                                                  
+                                    
+                                                </div>
+
+                                            </div>
+                                           
+                                                 {
+                                                    this.state. submitIftrue ?
+                                                    
+                                                    <div></div>
+                                                    
+                                                    :
+                                                    <button class="main_btn" href="#" style={{"width":"100%"}}>proceed to payments</button>
+                                                }
+                                                 <br/>
+                                                 <br/>
                                             </div>
                                           </div>
                                          
@@ -1026,26 +1070,7 @@ render(){
                                          <div className="div-card-chectout">
                                         
                                      
-                                            <div className="">
-                                                <div class="creat_account">
-                                            
-                                                  
-                                                    <input type="checkbox" id="f-option4" name="selector" required/>
-                                                    <label for="f-option4">I’ve read and accept the </label>
-                                                    <a href="#">terms &amp; conditions*</a>
-                                    
-                                                </div>
-
-                                            </div>
-                                            {
-                                            this.state. submitIftrue ?
-                                            
-                                            <div></div>
-                                            
-                                            :
-                                            <button class="main_btn" href="#" style={{"width":"100%"}}>proceed to payments</button>
-                                        }
-                                            
+                                           
                                             
                                      
                                          </div>

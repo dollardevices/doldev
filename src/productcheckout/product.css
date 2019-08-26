@@ -55,19 +55,9 @@
   /* min-height: 900px; */
   /* background: red !important; */
 }
-
-.radion_btn input[type=checkbox] {
-  transform: scale(1.5);
-}
-
-.radion_btn input[type=checkbox] {
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  visibility: hidden;
-
+.creat_account-costom{
+  width:500px !important ;
+  /* background: red */
 }
 
 .checkout-costom{
@@ -76,31 +66,11 @@
   bottom: 10px;
   color: black
 }
-.radion_btn input[type=checkbox]:after {
-  content: " ";
-  background-color: #fff;
-  display: inline-block;
-  margin-left: 10px;
-  padding-bottom: 25px;
-  color: #00BFF0;
-  width: 20px;
-  height: 16px;
-  visibility: visible;
-  border: 1px solid #00BFF0;
-  padding-left: 3px;
-  border-radius: 5px;
-  position: relative;
-  bottom: 18px;
-  right: 18px;
-}
-
-.radion_btn input[type=checkbox]:checked:after {
-  content: "\2714";
-  padding: -1px;
-  font-weight: bold;
-  position: relative;
-  bottom: 18px;
-  right: 18px;
+.panel-heading-costom{
+  width: 90%;
+  padding: 10px;
+  margin: auto;
+  margin-bottom: 10px
 }
 .QRCode-active-body{
   width: 100%;

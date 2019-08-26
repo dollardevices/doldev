@@ -61,9 +61,9 @@ class App extends Component {
     };
 
     if(Auth.loggedIn()){
-      console.log("check if error state isAuthenticated--->3", this.state.isAuthenticated)
+      // console.log("check if error state isAuthenticated--->3", this.state.isAuthenticated)
         if (!this.state.isAuthenticated && !this.state.errorAuth){
-          console.log("check if error state isAuthenticated--->4", this.state.isAuthenticated)
+          // console.log("check if error state isAuthenticated--->4", this.state.isAuthenticated)
           this.setState({
             pageLoading : false
           })
@@ -75,7 +75,7 @@ class App extends Component {
          fetch(this.state.domain+"/users/"+ Auth.getProfile().id, requestOptions )
           .then(res => res.json())
           .then(res => {
-            console.log("login--=---->",res)
+            // console.log("login--=---->",res)
             this.setState({
               isAuthenticated : true,
               pageLoading : true,
@@ -94,7 +94,7 @@ class App extends Component {
            fetch(this.state.domain+"/users/"+Auth.getProfile2().userId, requestOptions1 )
               .then(ress => ress.json())
               .then(ress => {
-                  console.log("res getProfile2() ===----->", ress)
+                  // console.log("res getProfile2() ===----->", ress)
 
                   this.setState({
                   
@@ -360,7 +360,7 @@ checkChart=(data)=>{
     toaster.notify(<div css={{ padding: "1rem","width": "200px", "height": "200px" }}>
     {/* <Text variant="h5">Did you know?</Text> */}
     <h5 css={{ display: "block" }}>
-   <b>  <i class="lnr lnr lnr-cart" style={{marginLeft:"20px"}}></i>  Add to cart</b>
+   <b>  <i class="lnr lnr lnr-cart" style={{marginLeft:"20px"}}></i>  Item Added</b>
     </h5>
   </div>, {
         duration: 5000,

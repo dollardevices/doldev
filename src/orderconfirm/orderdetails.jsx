@@ -120,7 +120,13 @@ render(){
                 {
                     this.props.data ?
                         <div class="container">
-                        <h3 class="title_confirmation">Thank you. Your order has been received.</h3>
+                            <div style={{width:"80%"}}>
+                            <h3 class="title_confirmation">Thank you! We have receieved your order. Please be advised that 
+                        your account has not been charged at this time. One of our 
+                        salesperson may reach out to you if more information is needed to complete your order.</h3>
+
+                            </div>
+                
                         <div class="row order_d_inner">
                             <div class="col-lg-4">
                                 <div class="details_item">
