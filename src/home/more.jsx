@@ -79,7 +79,7 @@ class More extends Component {
                   <div class="container">
                       <div class="feature_product_inner" style={{"paddingTop":"35px"}}>
                           <div class="main_title" >
-                              <h2>Bluetooth Speakers </h2>
+                              <h2>Phones </h2>
                               {/* <p>Who are in extremely love with eco friendly system.</p> */}
                           </div>
                           <div class="latest_product_inner row">
@@ -108,7 +108,7 @@ class More extends Component {
                   <div class="container">
                       <div class="feature_product_inner" style={{"paddingTop":"35px"}}>
                           <div class="main_title" >
-                              <h2>LAPTOP</h2>
+                              <h2>Bluetooth Speakers</h2>
                               {/* <p>Who are in extremely love with eco friendly system.</p> */}
                           </div>
                           <div>
