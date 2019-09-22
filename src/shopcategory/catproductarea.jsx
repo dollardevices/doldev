@@ -26,7 +26,7 @@ class CatProductArea extends Component {
             rate : [],
 
             // domain: 'http://localhost:4000/api',   
-            domain: 'https://dollardeviceback.herokuapp.com/api',
+            domain: 'https://shopend007.herokuapp.com/api',
         }
         
         this.addcart = this.addcart.bind(this);
@@ -304,6 +304,7 @@ class CatProductArea extends Component {
                                                     <button className="btn btn-block page-link" onClick={this.sort} name="phone">Phone</button>
                                                     
                                                 </li>
+                                                <li><button className="btn btn-block page-link" onClick={this.sort} name="sound"> Bluetooth Speakers</button></li>
                                                 <li><button className="btn btn-block page-link" onClick={this.sort} name="laptop"> Laptop</button></li>
                                                 <li><button className="btn btn-block page-link" onClick={this.sort} name="desktop"> Desktop</button> 
                                                     {/* <ul class="list">

@@ -9,7 +9,7 @@ class CartArea extends Component {
     constructor(props){
         super(props)
         this.state ={
-            domain: "https://dollardeviceback.herokuapp.com/api", 
+            domain: "https://shopend007.herokuapp.com/api", 
             value: 'select',
             id : "", 
             count:[],

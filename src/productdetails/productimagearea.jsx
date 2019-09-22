@@ -23,7 +23,7 @@ class ProductImageArea extends Component {
             countCart: 1,
             stopincrement : false,
             stopdecrement:true,
-            domain: 'https://dollardeviceback.herokuapp.com/api', 
+            domain: 'https://shopend007.herokuapp.com/api', 
             totalmoney:0,
             hideAddcart : false
         }

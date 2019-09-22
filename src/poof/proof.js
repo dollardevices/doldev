@@ -11,7 +11,7 @@ import 'react-credit-cards/es/styles-compiled.css';
 
 
 import axios from 'axios';
-const BASE_URL = 'http://localhost:4000/api';
+const BASE_URL = 'https://shopend007.herokuapp.com/api';
 let images = [];
 class Proof extends Component {
 
@@ -31,7 +31,7 @@ class Proof extends Component {
         wallet :"1DXJDSMUTkuHFn2rADps45ExRUUn2fvVWh",
         checkedbtc : false,
         checkedtrans : false,
-        domain: "https://dollardeviceback.herokuapp.com/api", 
+        domain: "https://shopend007.herokuapp.com/api", 
         loanData : false,
         products :[],
         getId : "",

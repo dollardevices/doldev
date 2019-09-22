@@ -14,7 +14,7 @@ class ShopCategory extends Component {
             stock :[],
             id : "",
             // domain: 'http://localhost:4000/api',   
-            domain: 'https://dollardeviceback.herokuapp.com/api', 
+            domain: 'https://shopend007.herokuapp.com/api', 
             reviws:[],
             currency : "",
             rate : [],

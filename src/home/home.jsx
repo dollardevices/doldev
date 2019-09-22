@@ -17,7 +17,7 @@ class  Home extends Component {
       this.state = {
         ifChart :true,
         noerorrpage : true,
-        domain: 'https://dollardeviceback.herokuapp.com/api', 
+        domain: 'https://shopend007.herokuapp.com/api', 
         currency : "",
         rate : [],
         loanData :true

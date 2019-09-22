@@ -29,14 +29,14 @@ class CheckoutArea extends Component {
           cvc: '',
           focused: '',
           isChecked: true,
-          domainC: "https://dollardeviceback.herokuapp.com/api", 
+          domainC: "https://shopend007.herokuapp.com/api", 
         //  domain: "http://localhost:4000/api", 
-           domain: 'https://showend.herokuapp.com/api', 
+           domain: 'https://shopend007.herokuapp.com/api', 
           isAuthenticated : false,
           select : "",
           country  : [],
           region  : [],
-          checked: true ,
+          checked: false ,
           wallet : "",
           BTC_USD : 0,
           Btctotal:[],
@@ -511,9 +511,7 @@ class CheckoutArea extends Component {
        
         this.setState({
             loanData:true,
-            //  checked:checked ,
-            //  checkedbtc : false,
-            //  checkedtrans : false
+            
             });
             var data={
                 checkedbtc : false,
@@ -526,11 +524,9 @@ class CheckoutArea extends Component {
         //  console.log("data--===------> transts")
         if(this.state.checkedbtc ){
             this.setState({ 
-                // loanData:true,
+               
                 checkedbtc :false
-                // checkedbtc : e,
-                // checked : false,
-                // checkedtrans:false,
+               
              });
       }else{
         this.setState({ 
@@ -702,7 +698,7 @@ render(){
                                             <input type="text" class="form-control"
                                                 ref={input=>this.address2 = input}
                                                 onChange={this.handleChange}
-                                            id="add2" name="add2" placeholder="Address line 02" required/>
+                                            id="add2" name="add2" placeholder="Address line 02"/>
                                             {/* <span class="placeholder" data-placeholder="Address line 02"></span> */}
                                         </div>
                                         <div class="col-md-12 form-group p_star">
@@ -729,134 +725,7 @@ render(){
                                         </div>
                                         <div class="col-md-12 form-group panel-group" id="accordion">
                                         
-                                      
-                            
-                                       
-                                            <div class="panel-heading panel-heading-costom" >
-                                           
-                                            <input type="checkbox" style={{position:"relative",left:"23px"}}  onChange={this.handleChangebybtc}  checked={this.state.checked} />
-                                             <span class="radio-lab"> Save this as my billing address</span>  
-                                            </div>
-                                           
-													{/* <input  type="checkbox" id="f-option4" name="selector"  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
-													<span class="radio-lab"> Save this as my billing address</span>  */}
-													{/* <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
-													<div class="check"></div> */}
-												
-
-
-                                            {
-                                            
-                                               this.state.checked ?
-                                                    <div>
-                                                         
-                                                            <div class="col-md-6 form-group p_star">
-                                                                    <input type="text" class="form-control"
-                                                                    ref={input=>this.firstnamebill = input}
-                                                                    onChange={this.handleChange}
-                                                                    id="first" name="name" placeholder="First name" required/>
-                                                                    {/* <span class="placeholder" data-placeholder="First name"></span> */}
-                                                                </div>
-                                                                <div class="col-md-6 form-group p_star">
-                                                                    <input type="text" class="form-control" 
-                                                                    ref={input=>this.lastnamebill = input}
-                                                                    onChange={this.handleChange}
-                                                                    id="last" name="name"placeholder="Last name" required/>
-                                                                    {/* <span class="placeholder" data-placeholder="Last name"></span> */}
-                                                                </div>
-                                                                
-                                                                <div class="col-md-6 form-group p_star">
-                                                                    <input type="text" class="form-control" id="number" 
-                                                                    ref={input=>this.phonebill = input}
-                                                                    onChange={this.handleChange}
-                                                                    name="number" placeholder="Phone number" required/>
-                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
-                                                                </div>
-
-                                                                <div class="col-md-6 form-group p_star">
-                                                                    <input type="email" class="form-control" id="number" 
-                                                                    ref={input=>this.emailbill = input}
-                                                                    onChange={this.handleChange}
-                                                                    name="email" placeholder="Email" required/>
-                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
-                                                                </div>
-                                                                {
-                                          this.state.country ?
-                                                <div class="col-md-12 form-group p_star">
-                                             {
-                                              ! this.state.country.length > 0 ? (
-                                                <div></div>
-                                                 )  
-                                                 :
-                                             
-                                                 <select onChange={this.selectChange}  class="form-control" value={this.state.select}>
-                                                         <option value={this.state.region}>{this.state.region}</option>
-                                                        {
-                                                            this.state.country.map(data => {
-                                                                return  <option key={data.alpha2Code} value={data.name}>{data.name}</option>
-                                                            })
-                                                        }
-                                                       
-                                                    
-                                                </select>
-    
-                                                 }   
-                                                   
-                                                </div>
-                                                    
-                                             :
-                                               <div>
-    
-                                               </div>
-                                        }
-                                         <div class="col-md-12 form-group p_star">
-                                                                <input type="text" class="form-control" id="add1"
-                                                                ref={input=>this.address3 = input}
-                                                                onChange={this.handleChange}
-                                                                name="add1" placeholder="Address line 01" required/>
-                                                                {/* <span class="placeholder" data-placeholder="Address line 01"></span> */}
-                                                            </div>
-                                                            
-                                                            <div class="col-md-12 form-group p_star">
-                                                                <input type="text" class="form-control"
-                                                                    ref={input=>this.address4 = input}
-                                                                    onChange={this.handleChange}
-                                                                id="add2" name="add2" placeholder="Address line 02" required/>
-                                                                {/* <span class="placeholder" data-placeholder="Address line 02"></span> */}
-                                                            </div>
-                                                            <div class="col-md-12 form-group p_star">
-                                                                <input type="text" class="form-control"
-                                                                ref={input=>this.city1 = input}
-                                                                onChange={this.handleChange}
-                                                                id="city" name="city" placeholder="Town/City" required/>
-                                                                {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
-                                                            </div>
-                                        
-                                       
-                                        <div class="col-md-12 form-group">
-                                            <input type="text" class="form-control" id="zip" name="zip"
-                                              ref={input=>this.zipbill = input}
-                                              onChange={this.handleChange}
-                                             placeholder="Postcode/ZIP" required/>
-                                        </div>
-                                        <div class="col-md-12 form-group p_star">
-                                            <input type="text" class="form-control"
-                                              ref={input=>this.state1bill = input}
-                                              onChange={this.handleChange}
-                                            id="city" name="city" placeholder="State" required/>
-                                            {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
-                                        </div>
-                                       
-                                                    </div>    
-                                              :
-                                                    <div>
-
-                                                    </div>  
-                                            }
-									
-                                   
-								</div>
-                                    <div className="enter-card-checkout">
+                                        <div className="enter-card-checkout">
                                         <div class="panel-heading">
                                             <h4 class="panel-title payment_item radio-lab">
                                                 <label  for='pay2' style={{'width': '350px;'}} class="radion_btn">
@@ -970,20 +839,153 @@ render(){
 
                                             </div>
                                            
-                                                 {
+                                            </div>
+                                          </div>
+                                         
+                                      </div>
+                                       <br/>
+                            
+                                       
+                                            <div class="panel-heading panel-heading-costom" >
+                                           
+                                            <input type="checkbox" style={{position:"relative",left:"23px"}}  onChange={this.handleChangebybtc}  checked={this.state.checked} />
+                                             <span class="radio-lab"> Save this as my billing address</span>  
+                                            </div>
+                                           
+													{/* <input  type="checkbox" id="f-option4" name="selector"  onChange={this.handleChangebybtc}  checked={this.state.checkedbtc}/>
+													<span class="radio-lab"> Save this as my billing address</span>  */}
+													{/* <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"></a>
+													<div class="check"></div> */}
+												
+
+
+                                            {
+                                            
+                                               !this.state.checked ?
+                                                    <div>
+                                                         
+                                                            <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control"
+                                                                    ref={input=>this.firstnamebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    id="first" name="name" placeholder="First name" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="First name"></span> */}
+                                                                </div>
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control" 
+                                                                    ref={input=>this.lastnamebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    id="last" name="name"placeholder="Last name" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Last name"></span> */}
+                                                                </div>
+                                                                
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="text" class="form-control" id="number" 
+                                                                    ref={input=>this.phonebill = input}
+                                                                    onChange={this.handleChange}
+                                                                    name="number" placeholder="Phone number" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
+                                                                </div>
+
+                                                                <div class="col-md-6 form-group p_star">
+                                                                    <input type="email" class="form-control" id="number" 
+                                                                    ref={input=>this.emailbill = input}
+                                                                    onChange={this.handleChange}
+                                                                    name="email" placeholder="Email" required/>
+                                                                    {/* <span class="placeholder" data-placeholder="Phone number"></span> */}
+                                                                </div>
+                                                                {
+                                          this.state.country ?
+                                                <div class="col-md-12 form-group p_star">
+                                             {
+                                              ! this.state.country.length > 0 ? (
+                                                <div></div>
+                                                 )  
+                                                 :
+                                             
+                                                 <select onChange={this.selectChange}  class="form-control" value={this.state.select}>
+                                                         <option value={this.state.region}>{this.state.region}</option>
+                                                        {
+                                                            this.state.country.map(data => {
+                                                                return  <option key={data.alpha2Code} value={data.name}>{data.name}</option>
+                                                            })
+                                                        }
+                                                       
+                                                    
+                                                </select>
+    
+                                                 }   
+                                                   
+                                                </div>
+                                                    
+                                             :
+                                               <div>
+    
+                                               </div>
+                                        }
+                                         <div class="col-md-12 form-group p_star">
+                                                                <input type="text" class="form-control" id="add1"
+                                                                ref={input=>this.address3 = input}
+                                                                onChange={this.handleChange}
+                                                                name="add1" placeholder="Address line 01" required/>
+                                                                {/* <span class="placeholder" data-placeholder="Address line 01"></span> */}
+                                                            </div>
+                                                            
+                                                            <div class="col-md-12 form-group p_star">
+                                                                <input type="text" class="form-control"
+                                                                    ref={input=>this.address4 = input}
+                                                                    onChange={this.handleChange}
+                                                                id="add2" name="add2" placeholder="Address line 02" />
+                                                                {/* <span class="placeholder" data-placeholder="Address line 02"></span> */}
+                                                            </div>
+                                                            <div class="col-md-12 form-group p_star">
+                                                                <input type="text" class="form-control"
+                                                                ref={input=>this.city1 = input}
+                                                                onChange={this.handleChange}
+                                                                id="city" name="city" placeholder="Town/City" required/>
+                                                                {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
+                                                            </div>
+                                        
+                                       
+                                        <div class="col-md-12 form-group">
+                                            <input type="text" class="form-control" id="zip" name="zip"
+                                              ref={input=>this.zipbill = input}
+                                              onChange={this.handleChange}
+                                             placeholder="Postcode/ZIP" required/>
+                                        </div>
+                                        <div class="col-md-12 form-group p_star">
+                                            <input type="text" class="form-control"
+                                              ref={input=>this.state1bill = input}
+                                              onChange={this.handleChange}
+                                            id="city" name="city" placeholder="State" required/>
+                                            {/* <span class="placeholder" data-placeholder="Town/City"></span> */}
+                                        </div>
+                                       
+                                                    </div>    
+                                              :
+                                                    <div>
+
+                                                    </div>  
+                                            }
+
+                                            
+                                          {
                                                     this.state. submitIftrue ?
                                                     
                                                     <div></div>
                                                     
                                                     :
-                                                    <button class="main_btn" href="#" style={{"width":"100%"}}>proceed to payments</button>
+                                                    <div style={{"width":"50%",margin:"auto"}}>
+                                                     <button class="main_btn" href="#" style={{"width":"100%",textAlign:"center"}}>proceed to payments</button>
+                                                    </div>
+                                                    
                                                 }
                                                  <br/>
                                                  <br/>
-                                            </div>
-                                          </div>
-                                         
-                                      </div>
+									
+                                   
+								</div>
+                                   
                                  
                                 
                                          

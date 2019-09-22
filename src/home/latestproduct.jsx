@@ -14,7 +14,7 @@ class  LatestProduct extends Component {
             quantity: 1,
             products : [],
             phones  :[],
-            domain: 'https://dollardeviceback.herokuapp.com/api', 
+            domain: 'https://shopend007.herokuapp.com/api', 
             // domain: 'http://localhost:4000/api', 
 		}
     }

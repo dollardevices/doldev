@@ -82,8 +82,7 @@ class  System extends Component {
                                     <img class="img-fluid" src={this.props.data.imageData[1]} alt=""/>
                             </a>
                             <div class="p_icon icon-posion-relative">
-                            {/* <a  href={"/product/" + this.slugify(this.props.data.name) +  "/"+ this.props.data.id } ><i class="fas fa-binoculars"></i></a>
-                                <a style={{"cursor":"pointer"}}><i class="lnr lnr-cart"  onClick={this.addToCart}></i></a> */}
+                           
                             </div>
                         </div>
                         <a  href={"/product/" + this.slugify(this.props.data.name) +  "/"+ this.props.data.id } >
@@ -101,8 +100,7 @@ class  System extends Component {
                     <div class="f_p_img image-system-home">
                         <img class="img-fluid" src={this.props.data.imageData[0]} alt=""/>
                         <div class="p_icon icon-posion-relative">
-                        {/* <a  href={"/product/" + this.slugify(this.props.data.name) +  "/"+ this.props.data.id } ><i class="fas fa-binoculars"></i></a>
-                            <a style={{"cursor":"pointer"}}><i class="lnr lnr-cart"  onClick={this.addToCart}></i></a> */}
+                        
                         </div>
                     </div>
                     <a href="#"><h4> {this.props.data .name}</h4> {this.props. data.count} </a>

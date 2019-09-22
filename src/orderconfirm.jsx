@@ -10,7 +10,7 @@ class  OrderConfirm extends Component {
     constructor(props){
         super(props)
         this.state ={
-            domain: "https://dollardeviceback.herokuapp.com/api", 
+            domain: "https://shopend007.herokuapp.com/api", 
             // domain: "http://localhost:4000/api", 
             id : "", 
             products:[],

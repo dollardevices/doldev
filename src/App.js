@@ -35,7 +35,7 @@ class App extends Component {
     super(props)
     this.state ={
       // domain: "http://localhost:4000/api", 
-      domain: "https://dollardeviceback.herokuapp.com/api",
+      domain: "https://shopend007.herokuapp.com/api",
       isAuthenticated : false,
       errorAuth : false,
        noerorrpage : false,

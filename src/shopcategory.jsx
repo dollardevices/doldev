@@ -10,7 +10,8 @@ class  ShopCategory extends Component{
     super(props)
     this.state ={
         noerorrpage :true,
-        domain: "https://dollardeviceback.herokuapp.com/api", 
+        domain: "https://shopend007.herokuapp.com/api", 
+        // domain: "http://localhost:4000/api",
         // products:[]
     }
   }

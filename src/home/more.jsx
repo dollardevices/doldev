@@ -20,7 +20,7 @@ class More extends Component {
             phones  :[],
             system : [],
             // domain: 'http://localhost:4000/api',   
-            domain: 'https://dollardeviceback.herokuapp.com/api', 
+             domain: 'https://shopend007.herokuapp.com/api', 
 		}
     }
 
@@ -37,20 +37,20 @@ class More extends Component {
          headers: { 'Content-Type':'application/json','Access-Control-Allow-Origin': '*'  },   
        };
        // var email = "admin@peppement.com"
-        fetch(this.state.domain+"/getphone/", requestOptions )
+        fetch(this.state.domain+"/getphone", requestOptions )
        .then(res => res.json())
        .then(res => {
-   
+        console.log("error state this.state.phoen==----===----> ", res)
          this.setState({
            phones : res.data
          })
         //  console.log("error state this.state.phoen==----===----> ", this.state.phones)
        }).catch(err => err);
 
-       fetch(this.state.domain+"/getsystem/", requestOptions )
+       fetch(this.state.domain+"/getsound", requestOptions )
        .then(res => res.json())
        .then(res => {
-   
+        console.log("error state this.state.sound==----===----> ", res.data)
          this.setState({
            system : res.data
          })
@@ -79,7 +79,7 @@ class More extends Component {
                   <div class="container">
                       <div class="feature_product_inner" style={{"paddingTop":"35px"}}>
                           <div class="main_title" >
-                              <h2>PHONE</h2>
+                              <h2>Bluetooth Speakers </h2>
                               {/* <p>Who are in extremely love with eco friendly system.</p> */}
                           </div>
                           <div class="latest_product_inner row">
@@ -111,22 +111,40 @@ class More extends Component {
                               <h2>LAPTOP</h2>
                               {/* <p>Who are in extremely love with eco friendly system.</p> */}
                           </div>
-                          <div class="latest_product_inner row">
-                                 
+                          <div>
                             {
-                                        this.state.system.map(data => {
-                                            return (
-
-                                              <System    data={data}  checkChart={this.checkChart}  />
-                                              
-                                             
-                                            )
-                                        })
-                              }
+                              this.state.system ?
+                               <div> 
+                                  {
+                            this.state.system.length === 0 ?
+                              <div></div>
+                              :
+                              <div class="latest_product_inner row">
                            
-                              
+                              {
+                                          this.state.system.map(data => {
+                                              return (
+  
+                                             
+                                                 <System    data={data}  checkChart={this.checkChart}  />
+                                                
+                                               
+                                              )
+                                          })
+                                } 
                              
-                           </div>
+                                
+                               
+                             </div>
+
+                          }
+                               </div>
+                               :
+                               "kgxdb,.msjudge"
+                            }
+                          </div>
+                         
+                         
                       </div>
                   </div>
               </div>

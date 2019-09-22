@@ -19,7 +19,7 @@ class ProductFeature extends Component {
             products : [],
             phones  :[],
             // domain: 'http://localhost:4000/api', 
-            domain: 'https://dollardeviceback.herokuapp.com/api', 
+            domain: 'https://shopend007.herokuapp.com/api', 
             currency : "",
             rate : [],
 
