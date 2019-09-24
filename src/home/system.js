@@ -89,9 +89,18 @@ class  System extends Component {
                             <h4> {this.props.data .name}</h4> {this.props. data.count} </a>
                        {
                            this.props.data.discountprice ?
-                           <h5> $ {this.props.data.discountprice.toFixed(2)}</h5>
+                           <div>
+                               <h5> $ {this.props.data.discountprice.toFixed(2)}</h5>
+                                 <h5 className="fullprice"> {this.props.data.originalprice}</h5>
+                                 
+                           </div>
+                           
                            :
-                           <h5> ${this.props.data.discountprice}</h5>
+                           <div>
+                                <h5> ${this.props.data.discountprice}</h5>
+                               <h5 className="fullprice"> {this.props.data.originalprice}</h5>
+                           </div>
+                          
                        }
                        
                     </div>
@@ -104,7 +113,10 @@ class  System extends Component {
                         </div>
                     </div>
                     <a href="#"><h4> {this.props.data .name}</h4> {this.props. data.count} </a>
-                    <h5> ${this.props.data.discountprice}</h5>
+                    <div>
+                                <h5> ${this.props.data.discountprice}</h5>
+                               <h5 className="fullprice"> {this.props.data.originalprice}</h5>
+                           </div>
                 </div>
          
        

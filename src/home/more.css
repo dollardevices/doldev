@@ -16,6 +16,10 @@
     bottom: 200px !important
 }
 
+.fullprice {
+    text-decoration: line-through;
+}
+
 .f_p_img-home-page{
     width: 85%;
     height: 340px;

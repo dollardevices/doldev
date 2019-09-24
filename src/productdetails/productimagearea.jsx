@@ -444,7 +444,11 @@ render(){
                                     <h3>{this.props.stock.name}</h3>
                                     {
                                         this.props.stock.discountprice ? 
-                                        <h2>{this. geticom(this.props.currency)} {this.getRates(this.props.currency,  this.props.stock.discountprice).toFixed(2)}</h2>
+                                        <div>
+                                             <h2>{this. geticom(this.props.currency)} {this.getRates(this.props.currency,  this.props.stock.discountprice).toFixed(2)}</h2>
+                                        <h5 className="fullprice"> {this.props.stock.originalprice}</h5>
+                                        </div>
+                                       
                                         :
                                         <h3></h3>
                                     }

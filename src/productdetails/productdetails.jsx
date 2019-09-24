@@ -44,6 +44,7 @@ class ShopCategory extends Component {
        fetch(this.state.domain+"/details/"+params.id, requestOptions )
        .then(res => res.json())
        .then(res => {
+             console.log("error state this.state. getreview==----===----> ", res )
             fetch(this.state.domain+"/getreview/"+params.id, requestOptions )
             .then(res => res.json())
             .then(res => {

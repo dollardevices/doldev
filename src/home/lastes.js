@@ -181,9 +181,13 @@ class Lastes extends Component {
                         <a  href={"/product/" + this.slugify(this.props.data.name) +  "/"+ this.props.data.id } ><h4> {this.props.data .name}</h4> {this.props. data.count}  </a>
                        {
                            this.props.data.discountprice ?
-                           <h5> {this. geticom(this.props.currency)} {this.getRates(this.props.currency,  this.props.data.discountprice).toFixed(2) }</h5>
+                           <div>
+                                    <h5> {this. geticom(this.props.currency)} {this.getRates(this.props.currency,  this.props.data.discountprice).toFixed(2) }</h5>
+                               <h5 className="fullprice"> {this.props.data.originalprice}</h5>
+                           </div>
+                      
                            :
-                           <h5> ${this.props.data.discountprice}</h5>
+                          <div> <h5> ${this.props.data.discountprice}</h5><h5 className="fullprice"> {this.props.data.originalprice}</h5> </div>
                        }
                        
                     </div>
@@ -197,7 +201,7 @@ class Lastes extends Component {
                         </div>
                     </div>
                     <a href="#"><h4> {this.props.data .name}</h4> {this.props. data.count}  </a>
-                    <h5> ${this.props.data.discountprice}</h5>
+                    <div> <h5> ${this.props.data.discountprice}</h5><h5 className="fullprice"> {this.props.data.originalprice}</h5> </div>
                 </div>
          
        
